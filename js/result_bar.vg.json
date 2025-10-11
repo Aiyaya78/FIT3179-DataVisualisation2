@@ -60,7 +60,7 @@
           "legend": null,
           "scale": {
             "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
-            "range": ["#ab3377", "#4377a9", "#ee6678", "#248832", "#65cded", "#cdbb44", "#bbbbbb"]
+            "range": ["#ab3377", "#4377a9", "#ffb110", "#248832", "#65cded", "#ee6678", "#bbbbbb"]
           }
         },
         "tooltip": [
