@@ -18,19 +18,19 @@
         "options": [
           [109.5, 4.2],
           [100.2, 6.5],   
-          [100.5, 5.8],   
+          [100.5, 6.0],   
           [100.4, 5.3],   
-          [100.9, 4.7],   
-          [101.9, 2.8],   
-          [102.3, 2.2],   
+          [100.8, 4.8],   
+          [101.5, 3.5],   
+          [102.3, 2.8],   
           [102.3, 2.4],   
-          [103.5, 2.0],   
-          [102.9, 3.3],   
-          [104.0, 4.5],   
-          [103.3, 5.4],   
-          [110.3, 1.6],   
-          [116.1, 6.0],   
-          [115.0, 5.3],   
+          [103.4, 2.1],   
+          [102.4, 3.8],   
+          [103.0, 5.0],   
+          [101.9, 5.4],   
+          [113, 2.8],   
+          [117, 5.9],   
+          [115.2, 5.3],   
           [101.7, 3.1]    
         ],
         "labels": [
@@ -109,7 +109,22 @@
             "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
             "range": ["#ab3377", "#4377a9", "#ffb110", "#248832", "#65cded", "#ee6678", "#bbbbbb"]
           },
-          "title": "Winning Party"
+          "title": "Winning Party",
+          "legend": {
+                "orient": "bottom",
+                "direction": "horizontal",
+                "columns": 7,                 
+                "symbolType": "square",
+                "symbolSize": 300,           
+                "symbolStrokeWidth": 1.5,
+                "title": "Winning Party",
+                "titleFontSize": 14,
+                "titleFontWeight": "bold",
+                "titlePadding": 10,
+                "labelFontSize": 12,
+                "labelFontWeight": "normal",
+                "columnPadding": 20         
+            }
         },
         "tooltip": [
           {"field": "code_parlimen", "title": "Parliament Code"},
@@ -117,7 +132,7 @@
           {"field": "state", "title": "State"},
           {"field": "winning_party_full", "title": "Winner"},
           {"field": "winning_majority", "type": "quantitative", "title": "Winning Majority", "format": ","},
-          {"field": "turnout_percent", "type": "quantitative", "title": "Turnout (%)", "format": ".2f"}
+          {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".2f"}
         ]
       }
     },
