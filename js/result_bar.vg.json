@@ -60,7 +60,7 @@
           "legend": null,
           "scale": {
             "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
-            "range": ["#FE6100","#4575B4","#74ADD1","#2ca02c","#17becf","#d62728","#7f7f7f"]
+            "range": ["#ab3377", "#4377a9", "#ee6678", "#248832", "#65cded", "#cdbb44", "#bbbbbb"]
           }
         },
         "tooltip": [
@@ -73,7 +73,7 @@
     {
       "mark": {
         "type": "text",
-        "color": "white",
+        "color": "floralwhite",
         "fontWeight": "normal",
         "fontSize": 14,
         "align": "left",
