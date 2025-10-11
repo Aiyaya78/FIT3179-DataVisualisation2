@@ -34,7 +34,7 @@
             {"coalition": "GPS", "full": "Gabungan Parti Sarawak (GPS)"},
             {"coalition": "GRS", "full": "Gabungan Rakyat Sabah (GRS)"},
             {"coalition": "WARISAN", "full": "Parti Warisan Sabah (WARISAN)"},
-            {"coalition": "IND/OTH", "full": "Independent and Others"}
+            {"coalition": "IND/OTH", "full": "Independent / Others"}
           ]
         },
         "key": "coalition",
