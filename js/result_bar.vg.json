@@ -1,7 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "GE15 Parliamentary Seats by Coalition", 
+    "text": "GE15 Parliamentary Seats by Party", 
     "anchor": "start"},
   "width": 800,
   "height": 200,
@@ -64,9 +64,9 @@
           }
         },
         "tooltip": [
-          {"field": "full", "title": "Coalition"},
+          {"field": "full", "title": "Party"},
           {"field": "seats", "title": "Seats"},
-          {"field": "pctLabel", "title": "Seat share"}
+          {"field": "pctLabel", "title": "Seat Share"}
         ]
       }
     },
@@ -74,7 +74,7 @@
       "mark": {
         "type": "text",
         "color": "white",
-        "fontWeight": "bold",
+        "fontWeight": "normal",
         "fontSize": 14,
         "align": "left",
         "baseline": "bottom",
