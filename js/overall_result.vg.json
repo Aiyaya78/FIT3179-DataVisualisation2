@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "GE15 Parliamentary Seats by Coalition", "anchor": "start"},
+  "width": 100,                      
+  "height": 100,                     
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_coalition_summary.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    { "calculate": "sequence(0, datum.seats)", "as": "seat_array" },
+    { "flatten": ["seat_array"], "as": ["seat"] },
+    { "calculate": "floor(datum.seat / 10)", "as": "row" },  
+    { "calculate": "datum.seat % 10", "as": "col" }
+  ],
+
+  "mark": {"type": "circle", "size": 50},
+
+  "encoding": {
+    "x": {
+      "field": "col", "type": "quantitative", "axis": null,
+      "scale": { "domain": [-0.5, 9.5], "nice": false }     
+    },
+    "y": {
+      "field": "row", "type": "quantitative", "axis": null,
+      "sort": "ascending",
+      "scale": { "domain": [-0.5, 8.5], "nice": false }      
+    },
+    "facet": {
+      "field": "coalition",
+      "type": "nominal",
+      "columns": 7,
+      "title": null,
+      "sort": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"]
+    },
+    "color": {
+      "field": "coalition",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
+        "range": ["#D73027","#4575B4","#74ADD1","#FDAE61","#1A9850","#8073AC","#BDBDBD"]
+      }
+    },
+    "tooltip": [{"field": "coalition", "title": "Coalition"}, {"field": "seats", "title": "Seats"}]
+  },
+
+  "resolve": { "scale": { "x": "shared", "y": "shared" }},
+
+  "config": {
+    "view": { "stroke": null },
+    "facet": { "spacing": 8 },
+    "header": { "labelFontSize": 12, "labelLimit": 140 }
+  }
+}

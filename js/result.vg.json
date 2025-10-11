@@ -1,0 +1,102 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "GE15 Parliamentary Seats by Coalition", 
+    "anchor": "start"},
+  "width": 800,
+  "height": 200,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_coalition_summary.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    { "aggregate": [{"op": "sum", "field": "seats", "as": "seats"}], "groupby": ["coalition"] },
+    { "window": [{"op": "row_number", "as": "ord"}],
+      "sort": [{"field": "seats", "order": "descending"}]
+    },
+    { "window": [{"op": "sum", "field": "seats", "as": "cum"}],
+      "sort": [{"field": "ord", "order": "ascending"}],
+      "frame": [null, 0]
+    },
+    { "calculate": "datum.cum - datum.seats", "as": "start" },
+
+
+    {
+      "lookup": "coalition",
+      "from": {
+        "data": {
+          "values": [
+            {"coalition": "PH", "full": "Pakatan Harapan"},
+            {"coalition": "PN", "full": "Perikatan Nasional"},
+            {"coalition": "BN", "full": "Barisan Nasional"},
+            {"coalition": "GPS", "full": "Gabungan Parti Sarawak"},
+            {"coalition": "GRS", "full": "Gabungan Rakyat Sabah (GRS)"},
+            {"coalition": "WARISAN", "full": "Parti Warisan Sabah (WARISAN)"},
+            {"coalition": "IND/OTH", "full": "Independent and Others"}
+          ]
+        },
+        "key": "coalition",
+        "fields": ["full"]
+      }
+    },
+
+    { "joinaggregate": [{"op": "sum", "field": "seats", "as": "totalSeats"}] },
+    { "calculate": "datum.seats / datum.totalSeats * 100", "as": "pct" },
+    { "calculate": "format(datum.pct, '.1f') + '%'", "as": "pctLabel" }
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "bar", "stroke": "white", "strokeWidth": 2, "height": 60, "cursor": "pointer"},
+      "encoding": {
+        "x": {"field": "seats", "type": "quantitative", "stack": "zero", "axis": null},
+        "y": {"value": 0},
+        "order": {"field": "ord", "type": "quantitative", "sort": "ascending"},
+        "color": {
+          "field": "coalition",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
+            "range": ["#FE6100","#4575B4","#74ADD1","#2ca02c","#17becf","#d62728","#7f7f7f"]
+          }
+        },
+        "tooltip": [
+          {"field": "full", "title": "Coalition"},
+          {"field": "seats", "title": "Seats"},
+          {"field": "pctLabel", "title": "Seat share"}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "color": "white",
+        "fontWeight": "bold",
+        "fontSize": 14,
+        "align": "left",
+        "baseline": "bottom",
+        "dx": 4,
+        "dy": -3,
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": {"field": "start", "type": "quantitative"},
+        "y": {"value": 0},
+        "text": {"field": "label"},
+        "order": {"field": "ord", "type": "quantitative", "sort": "ascending"}
+      },
+      "transform": [
+        { "calculate": "datum.coalition + '\\n' + datum.seats + ' seats'", "as": "label" },
+        { "filter": "datum.seats > 10" }
+      ]
+    }
+  ],
+
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false, "domain": false, "ticks": false, "labels": false, "title": null}
+  }
+}
