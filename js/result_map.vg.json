@@ -1,0 +1,66 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "GE15 Constituency-Level Results by Winning Party",
+  "width": 800,
+  "height": 600,
+  "projection": {"type": "mercator"},
+
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/js/malaysia.parlimen.geojson",
+        "format": {"type": "json", "property": "features"}
+      },
+      "transform": [
+        {
+          "lookup": "properties.parlimen",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_winningANDturnout_by_constituency.csv"
+            },
+            "key": "id_geo",
+            "fields": ["state","code_parlimen","constituency","winning_party","winning_majority","turnout_percent"]
+          }
+        },
+        {
+          "lookup": "winning_party",
+          "from": {
+            "data": {
+              "values": [
+                {"winning_party": "PH", "full_name": "Pakatan Harapan (PH)"},
+                {"winning_party": "PN", "full_name": "Perikatan Nasional (PN)"},
+                {"winning_party": "BN", "full_name": "Barisan Nasional (BN)"},
+                {"winning_party": "GPS", "full_name": "Gabungan Parti Sarawak (GPS)"},
+                {"winning_party": "GRS", "full_name": "Gabungan Rakyat Sabah (GRS)"},
+                {"winning_party": "WARISAN", "full_name": "Parti Warisan Sabah (WARISAN)"},
+                {"winning_party": "IND/OTH", "full_name": "Independent / Others"}
+              ]
+            },
+            "key": "winning_party",
+            "fields": ["full_name"]
+          }
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.7},
+      "encoding": {
+        "color": {
+          "field": "winning_party",
+          "type": "nominal",
+          "scale": {
+            "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
+            "range": ["#ab3377","#4377a9","#ffb110","#248832","#65cded","#ee6678","#bbbbbb"]
+          },
+          "title": "Winning Party"
+        },
+        "tooltip": [
+          {"field": "code_parlimen", "title": "Parliament Code"},
+          {"field": "constituency", "title": "Constituency Name"},
+          {"field": "state", "title": "State"},
+          {"field": "full_name", "title": "Winner"},
+          {"field": "winning_majority", "type": "quantitative", "title": "Winning Majority", "format": ","},
+          {"field": "turnout_percent", "type": "quantitative", "title": "Turnout (%)", "format": ".2f"}
+        ]
+      }
+    }
+  ]
+}
