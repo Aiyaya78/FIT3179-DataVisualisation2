@@ -28,10 +28,10 @@
       "from": {
         "data": {
           "values": [
-            {"coalition": "PH", "full": "Pakatan Harapan"},
-            {"coalition": "PN", "full": "Perikatan Nasional"},
-            {"coalition": "BN", "full": "Barisan Nasional"},
-            {"coalition": "GPS", "full": "Gabungan Parti Sarawak"},
+            {"coalition": "PH", "full": "Pakatan Harapan (PH)"},
+            {"coalition": "PN", "full": "Perikatan Nasional (PN)"},
+            {"coalition": "BN", "full": "Barisan Nasional (BN)"},
+            {"coalition": "GPS", "full": "Gabungan Parti Sarawak (GPS)"},
             {"coalition": "GRS", "full": "Gabungan Rakyat Sabah (GRS)"},
             {"coalition": "WARISAN", "full": "Parti Warisan Sabah (WARISAN)"},
             {"coalition": "IND/OTH", "full": "Independent and Others"}
