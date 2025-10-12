@@ -1,0 +1,107 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "Voter Turnout by State and Election (GE11–GE15)", "anchor": "start"},
+  "width": 400,
+  "height": 400,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/state_turnout_2004to2022.csv"
+  },
+
+  "params": [
+    {
+      "name": "regionSel",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": ["All", "Peninsular", "East Malaysia", "Federal Territory"],
+        "name": "Region: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "values": [
+            {"state":"Perlis","region":"Peninsular"},
+            {"state":"Kedah","region":"Peninsular"},
+            {"state":"Penang","region":"Peninsular"},
+            {"state":"Perak","region":"Peninsular"},
+            {"state":"Selangor","region":"Peninsular"},
+            {"state":"Negeri Sembilan","region":"Peninsular"},
+            {"state":"Melaka","region":"Peninsular"},
+            {"state":"Johor","region":"Peninsular"},
+            {"state":"Pahang","region":"Peninsular"},
+            {"state":"Terengganu","region":"Peninsular"},
+            {"state":"Kelantan","region":"Peninsular"},
+            {"state":"Sabah","region":"East Malaysia"},
+            {"state":"Sarawak","region":"East Malaysia"},
+            {"state":"Wilayah Persekutuan Kuala Lumpur","region":"Federal Territory"},
+            {"state":"Wilayah Persekutuan Putrajaya","region":"Federal Territory"},
+            {"state":"Wilayah Persekutuan Labuan","region":"Federal Territory"}
+          ]
+        },
+        "key": "state",
+        "fields": ["region"]
+      }
+    },
+    {"filter": "regionSel === 'All' ? true : datum.region === regionSel"},
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "values": [
+            {"state": "Wilayah Persekutuan Kuala Lumpur", "short": "W.P. Kuala Lumpur"},
+            {"state": "Wilayah Persekutuan Putrajaya",   "short": "W.P. Putrajaya"},
+            {"state": "Wilayah Persekutuan Labuan",      "short": "W.P. Labuan"}
+          ]
+        },
+        "key": "state",
+        "fields": ["short"]
+      }
+    },
+    { "calculate": "isValid(datum.short) ? datum.short : datum.state", "as": "state_short" }
+
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "rect"},
+      "encoding": {
+        "x": {
+          "field": "election", "type": "ordinal",
+          "sort": ["GE11","GE12","GE13","GE14","GE15"],
+          "title": "Election"
+        },
+        "y": {
+          "field": "state_short", "type": "nominal",
+          "title": "State",
+          "sort": {"field":"turnout_percent", "op":"mean", "order":"descending"}
+        },
+        "color": {
+          "field": "turnout_percent", "type": "quantitative",
+          "title": "Turnout (%)",
+          "scale": {
+            "type": "threshold", 
+            "domain":[50,60,70,80,90], 
+            "range":["#feedde","#fdd0a2","#fdae6b","#fd8d3c","#e6550d","#a63603"]}
+        },
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "election", "title": "Election"},
+          {"field": "turnout_percent", "type": "quantitative", "title": "Turnout (%)", "format": ".2f"},
+          {"field": "registered_voters", "type": "quantitative", "title": "Registered", "format": ","},
+          {"field": "voted", "type": "quantitative", "title": "Voted", "format": ","}
+        ]
+      }
+    }
+  ],
+
+  "config": {
+    "view": {"stroke": null},
+    "axis": {"grid": false}
+  }
+}

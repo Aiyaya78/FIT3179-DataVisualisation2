@@ -52,10 +52,10 @@
         },
         "color": {
           "field": "urban_rural_classification", "type": "nominal",
-          "title": "Class",
+          "title": "Area Classification",
           "scale": {
             "domain": ["Rural", "Semi Urban", "Urban"],
-            "range": ["#ff922f", "#3ddce9", "#1e6ef5"]
+            "range": ["#ff6800", "#8ACCDC", "#6D38A0"]
           }
         },
         "opacity": {
@@ -66,7 +66,7 @@
           { "field": "code_parlimen", "title": "Parliament Code" },
           { "field": "state", "title": "State" },            
           { "field": "constituency", "title": "Constituency" },
-          { "field": "urban_rural_classification", "title": "Class" },
+          { "field": "urban_rural_classification", "title": "Area Classification" },
           { "field": "registered_voters", "type": "quantitative", "title": "Registered", "format": "," },
           { "field": "voted", "type": "quantitative", "title": "Voted", "format": "," },
           { "field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".2f" }
