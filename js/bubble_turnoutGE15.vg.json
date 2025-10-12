@@ -1,0 +1,87 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "GE15 Constituency Turnout by State & Urban–Rural Class", "anchor": "start"},
+  "width": 800,
+  "height": 400,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_turnoutANDurbanrural_by_constituency.csv"
+  },
+
+  "transform": [
+    {
+      "lookup": "state",
+      "from": {
+        "data": {
+          "values": [
+            {"state": "Wilayah Persekutuan Kuala Lumpur", "short": "W.P. Kuala Lumpur"},
+            {"state": "Wilayah Persekutuan Putrajaya",   "short": "W.P. Putrajaya"},
+            {"state": "Wilayah Persekutuan Labuan",      "short": "W.P. Labuan"}
+          ]
+        },
+        "key": "state",
+        "fields": ["short"]
+      }
+    },
+    { "calculate": "isValid(datum.short) ? datum.short : datum.state", "as": "state_short" }
+  ],
+
+  "layer": [
+
+    {
+      "params": [
+        {
+          "name": "classSel",
+          "select": { "type": "point", "fields": ["urban_rural_classification"] },
+          "bind": "legend"
+        }
+      ],
+      "mark": { "type": "point", "filled": true, "fillOpacity": 0.5 , "size":200},
+      "encoding": {
+        "x": {
+          "field": "turnout_percent", "type": "quantitative",
+          "title": "Turnout (%)",
+          "scale": { "domain": [45, 90] },
+          "axis": { "tickCount": 9, "grid": false }
+        },
+        "y": {
+          "field": "state_short", "type": "nominal",
+          "title": "State",
+          "sort": "-x",
+          "axis": { "grid": true, "gridOpacity": 1 }
+        },
+        "color": {
+          "field": "urban_rural_classification", "type": "nominal",
+          "title": "Class",
+          "scale": {
+            "domain": ["Rural", "Semi Urban", "Urban"],
+            "range": ["#ff922f", "#3ddce9", "#1e6ef5"]
+          }
+        },
+        "opacity": {
+          "condition": { "param": "classSel", "value": 1 },
+          "value": 0.1
+        },
+        "tooltip": [
+          { "field": "code_parlimen", "title": "Parliament Code" },
+          { "field": "state", "title": "State" },            
+          { "field": "constituency", "title": "Constituency" },
+          { "field": "urban_rural_classification", "title": "Class" },
+          { "field": "registered_voters", "type": "quantitative", "title": "Registered", "format": "," },
+          { "field": "voted", "type": "quantitative", "title": "Voted", "format": "," },
+          { "field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".2f" }
+        ]
+      }
+    },
+     {
+      "data": { "values": [ { "x": 60 }, { "x": 80 } ] },
+      "mark": { "type": "rule", "strokeDash": [4,4], "stroke": "#888", "strokeWidth": 1.5 },
+      "encoding": { "x": { "field": "x", "type": "quantitative" } }
+    }
+  ],
+
+  "config": {
+    "view": { "stroke": null },
+    "axis": { "grid": false }
+  }
+}
