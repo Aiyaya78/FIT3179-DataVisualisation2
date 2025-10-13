@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "GE15 Voters by Gender", "anchor": "start"},
+  "width": 300,
+  "height": 400,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
+  },
+
+  "transform": [
+    {"fold": ["male_electors", "female_electors"], "as": ["gender_key", "voters"]},
+    {"calculate": "datum.gender_key === 'male_electors' ? 'Male' : 'Female'", "as": "gender"},
+    {"window": [{"op": "sum", "field": "voters", "as": "total"}], "frame": [null, null]},
+    {"calculate": "datum.voters / datum.total", "as": "pct"},
+    {"calculate": "datum.gender + '\\n' + format(datum.pct, '.2%')", "as": "label2line"}
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "arc", "innerRadius": 60},
+      "encoding": {
+        "theta": {"field": "voters", "type": "quantitative"},
+        "color": {
+          "field": "gender",
+          "type": "nominal",
+          "title": null,
+          "scale": {"domain": ["Male", "Female"], "range": ["#3182bd", "#e377c2"]},
+          "legend":null
+        },
+        "tooltip": [
+          {"field": "gender", "title": "Gender"},
+          {"field": "total", "type": "quantitative", "title": "Total electors", "format": ","},
+          {"field": "voters", "type": "quantitative", "title": "Electors", "format": ","}
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "radius": 92,
+        "lineBreak": "\n",
+        "fontWeight": "bold",
+        "fontSize": 12,
+        "align": "center",
+        "baseline": "middle",
+        "fill": "white"
+      },
+      "encoding": {
+        "theta": {"field": "voters", "type": "quantitative", "stack": true},
+        "text": {"field": "label2line"}
+      }
+    }
+  ],
+
+  "config": {"view": {"stroke": null}}
+}

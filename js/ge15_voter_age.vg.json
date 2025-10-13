@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "GE15 Voters by Age Group", "anchor": "start"},
+  "width": 300,
+  "height": 400,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
+  },
+
+  "transform": [
+    {
+      "fold": [
+        "18-20","21-29","30-39","40-49",
+        "50-59","60-69","70-79","80-89","Above 90"
+      ],
+      "as": ["age_group","count"]
+    },
+    {"window": [{"op": "sum", "field": "count", "as": "total"}], "frame": [null, null]},
+    {"calculate": "datum.count / datum.total", "as": "pct"},
+    {
+      "calculate": "datum.age_group === 'Above 90' ? '90+' : datum.age_group",
+      "as": "age_label"
+    }
+  ],
+
+  "layer": [
+    {
+      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "encoding": {
+        "x": {
+          "field": "age_label", "type": "ordinal",
+          "sort": ["18-20","21-29","30-39","40-49","50-59","60-69","70-79","80-89","90+"],
+          "axis": {"title": "Age Group"}
+        },
+        "y": {
+          "field": "count", "type": "quantitative",
+          "title": "Voters",
+          "axis": {"grid": false}
+        },
+        "color": {"value": "#3182bd"},
+        "tooltip": [
+          {"field": "age_group", "title": "Age group"},
+          {"field": "count", "type": "quantitative", "title": "Voters", "format": ","},
+          {"field": "pct", "type": "quantitative", "title": "Share", "format": ".1%"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "text", "dy": -6, "baseline": "bottom"},
+      "encoding": {
+        "x": {"field": "age_label", "type": "ordinal"},
+        "y": {"field": "count", "type": "quantitative"},
+        "text": {"field": "pct", "type": "quantitative", "format": ".1%"},
+        "color": {"value": "#333"}
+      }
+    }
+  ],
+
+  "config": {"view": {"stroke": null}}
+}

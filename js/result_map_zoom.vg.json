@@ -1,57 +1,15 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "GE15 Constituency-Level Results by Winning Party",
-  "width": 800,
+  "width": 1000,
   "height": 600,
 
   "params": [
     {
-      "name": "zoom_level",
-      "value": 1800,
-      "bind": {"input": "range", "min": 1800, "max": 70000, "step": 500, "name": "Zoom: "}
-    },
-    {
-      "name": "center_to",
-      "value": [109.5, 4.2],
-      "bind": {
-        "input": "select",
-        "options": [
-          [109.5, 4.2],
-          [100.2, 6.5],   
-          [100.5, 6.0],   
-          [100.4, 5.3],   
-          [100.8, 4.8],   
-          [101.5, 3.5],   
-          [102.3, 2.8],   
-          [102.3, 2.4],   
-          [103.4, 2.1],   
-          [102.4, 3.8],   
-          [103.0, 5.0],   
-          [101.9, 5.4],   
-          [113, 2.8],   
-          [117, 5.9],   
-          [115.2, 5.3],   
-          [101.7, 3.1]    
-        ],
-        "labels": [
-          "Malaysia (All)",
-          "Perlis",
-          "Kedah",
-          "Pulau Pinang",
-          "Perak",
-          "Selangor",
-          "Negeri Sembilan",
-          "Melaka",
-          "Johor",
-          "Pahang",
-          "Terengganu",
-          "Kelantan",
-          "Sarawak",
-          "Sabah",
-          "W.P. Labuan",
-          "W.P. Kuala Lumpur / W.P. Putrajaya"
-        ],
-        "name": "Zoom to State: "
+      "name": "brush",
+      "select": {
+        "type": "interval",
+        "zoom": "wheel"
       }
     }
   ],

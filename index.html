@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malaysia GE15 — Results & Turnout Dashboard</title>
+
+  <!-- Vega libs -->
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="page">
+    <!-- Title -->
+    <header class="card card--title" aria-label="Title">
+      <h1>Malaysia’s 15th General Election (GE15)</h1>
+      <p class="subtitle">Results, turnout and electorate profile</p>
+    </header>
+
+    <!-- 1) Single stacked bar -->
+    <section class="card" style="grid-area: bar">
+      <h2 class="card__title">Parliament Seats by Coalition</h2>
+      <div id="chart1-bar" class="viz"></div>
+    </section>
+
+    <!-- 2) Big map -->
+    <section class="card card--wide" style="grid-area: map">
+      <h2 class="card__title">Constituency Winners (Interactive Map)</h2>
+      <div id="chart2-map" class="viz viz--tall"></div>
+    </section>
+
+    <!-- Map descriptions (3 columns) -->
+    <section class="card" style="grid-area: d1">
+      <h3 class="card__title">How to read</h3>
+      <p>Colours show the winning coalition in each parliamentary constituency. Use the legend to filter and the zoom control / dropdown to focus on a state.</p>
+    </section>
+    <section class="card" style="grid-area: d2">
+      <h3 class="card__title">Why it matters</h3>
+      <p>The geographic breakdown reveals regional coalitions and urban–rural differences that aggregate charts can hide.</p>
+    </section>
+    <section class="card" style="grid-area: d3">
+      <h3 class="card__title">Data</h3>
+      <p>Winners and turnout are compiled from GE15 official tallies; boundaries are the national parliamentary constituencies.</p>
+    </section>
+
+    <!-- 3) Bubble plot (constituency turnout) + text -->
+    <section class="card card--wide-left" style="grid-area: bubble">
+      <h2 class="card__title">Constituency Turnout by State & Urban–Rural Class</h2>
+      <div id="chart3-bubble" class="viz viz--tall"></div>
+    </section>
+    <section class="card" style="grid-area: d4">
+      <h3 class="card__title">What to look for</h3>
+      <p>Hover for details. Click legend to focus on Rural, Semi-Urban or Urban seats. Larger circles (if enabled) indicate more registered voters.</p>
+    </section>
+
+    <!-- 4) Heatmap (turnout by state & year) + text -->
+    <section class="card card--wide-left" style="grid-area: heat">
+      <h2 class="card__title">Voter Turnout by State and Election (GE11–GE15)</h2>
+      <div id="chart4-heatmap" class="viz"></div>
+    </section>
+    <section class="card" style="grid-area: d5">
+      <h3 class="card__title">Trend insight</h3>
+      <p>Use the region selector to compare groups of states. Darker shades indicate higher turnout.</p>
+    </section>
+
+    <!-- 5–7) Small multiples: Age, Gender, Ethnicity -->
+    <section class="card" style="grid-area: small1">
+      <h2 class="card__title">Voters by Age Group</h2>
+      <div id="chart5-age" class="viz"></div>
+      <p class="caption">Share and absolute counts of registered voters by age band.</p>
+    </section>
+
+    <section class="card" style="grid-area: small2">
+      <h2 class="card__title">Voters by Gender</h2>
+      <div id="chart6-gender" class="viz"></div>
+      <p class="caption">Male vs female share of the GE15 electorate.</p>
+    </section>
+
+    <section class="card" style="grid-area: small3">
+      <h2 class="card__title">Voters by Ethnicity</h2>
+      <div id="chart7-ethnicity" class="viz"></div>
+      <p class="caption">Ethnic composition of the national electorate.</p>
+    </section>
+  </main>
+
+  <!-- Embed scripts (swap these URLs for your specs) -->
+  <script>
+    const opts = { actions: false, renderer: "canvas" };
+
+    vegaEmbed('#chart1-bar',
+      'js/result_bar.vg.json', opts);
+
+    vegaEmbed('#chart2-map',
+      'js/result_map.vg.json', opts);
+
+    vegaEmbed('#chart3-bubble',
+      'js/bubble_turnoutGE15.vg.json', opts);
+
+    vegaEmbed('#chart4-heatmap',
+      'js/heatmap_turnoutGE11toGE15.vg.json', opts);
+
+    vegaEmbed('#chart5-age',
+      'js/ge15_voter_age.vg.json', opts);
+
+    vegaEmbed('#chart6-gender',
+      'js/ge15_voter_gender.vg.json', opts);
+
+    vegaEmbed('#chart7-ethnicity',
+      'js/ge15_voter_ethnicity.vg.json', opts);
+  </script>
+</body>
+</html>
