@@ -1,8 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": "GE15 Constituency-Level Results by Winning Party",
-  "width": 800,
-  "height": 600,
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
 
   "params": [
     {

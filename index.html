@@ -23,7 +23,7 @@
     <!-- 1) Single stacked bar -->
     <section class="card" style="grid-area: bar">
       <h2 class="card__title">Parliament Seats by Coalition</h2>
-      <div id="chart1-bar" class="viz"></div>
+      <div id="chart1-bar" class="viz viz--sm"></div>
     </section>
 
     <!-- 2) Big map -->
@@ -49,7 +49,7 @@
     <!-- 3) Bubble plot (constituency turnout) + text -->
     <section class="card card--wide-left" style="grid-area: bubble">
       <h2 class="card__title">Constituency Turnout by State & Urban–Rural Class</h2>
-      <div id="chart3-bubble" class="viz viz--tall"></div>
+      <div id="chart3-bubble" class="viz viz--md"></div>
     </section>
     <section class="card" style="grid-area: d4">
       <h3 class="card__title">What to look for</h3>
@@ -59,7 +59,7 @@
     <!-- 4) Heatmap (turnout by state & year) + text -->
     <section class="card card--wide-left" style="grid-area: heat">
       <h2 class="card__title">Voter Turnout by State and Election (GE11–GE15)</h2>
-      <div id="chart4-heatmap" class="viz"></div>
+      <div id="chart4-heatmap" class="viz viz--md"></div>
     </section>
     <section class="card" style="grid-area: d5">
       <h3 class="card__title">Trend insight</h3>
@@ -69,24 +69,24 @@
     <!-- 5–7) Small multiples: Age, Gender, Ethnicity -->
     <section class="card" style="grid-area: small1">
       <h2 class="card__title">Voters by Age Group</h2>
-      <div id="chart5-age" class="viz"></div>
+      <div id="chart5-age" class="viz viz--md"></div>
       <p class="caption">Share and absolute counts of registered voters by age band.</p>
     </section>
 
     <section class="card" style="grid-area: small2">
       <h2 class="card__title">Voters by Gender</h2>
-      <div id="chart6-gender" class="viz"></div>
+      <div id="chart6-gender" class="viz viz--md"></div>
       <p class="caption">Male vs female share of the GE15 electorate.</p>
     </section>
 
     <section class="card" style="grid-area: small3">
       <h2 class="card__title">Voters by Ethnicity</h2>
-      <div id="chart7-ethnicity" class="viz"></div>
+      <div id="chart7-ethnicity" class="viz viz--md"></div>
       <p class="caption">Ethnic composition of the national electorate.</p>
     </section>
   </main>
 
-  <!-- Embed scripts (swap these URLs for your specs) -->
+  <!-- Embed script -->
   <script>
     const opts = { actions: false, renderer: "canvas" };
 

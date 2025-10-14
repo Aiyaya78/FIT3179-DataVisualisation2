@@ -3,8 +3,9 @@
   "title": {
     "text": "GE15 Parliamentary Seats by Party", 
     "anchor": "start"},
-  "width": 900,
-  "height": 200,
+  "width": "container",
+  "height": "container",
+  "autosize": {"type": "fit", "contains": "padding"},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_coalition_summary.csv",

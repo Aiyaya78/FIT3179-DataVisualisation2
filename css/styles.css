@@ -9,7 +9,7 @@
 }
 
 * { box-sizing: border-box; }
-html, body { margin: 0; padding: 0; }
+html, body { margin: 50; padding: 10; }
 body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
 
 /* Page grid */
@@ -45,7 +45,7 @@ body { background: var(--bg); color: var(--text); font-family: system-ui, -apple
   padding: 20px 18px;
 }
 
-.card--wide { /* full width if you want to force it */
+.card--wide{ /* full width if you want to force it */
   grid-column: 1 / -1;
 }
 
@@ -78,8 +78,10 @@ body { background: var(--bg); color: var(--text); font-family: system-ui, -apple
 [style*="grid-area: small3"]{ grid-area: small3; }
 
 /* Visualization boxes */
-.viz { width: 100%; min-height: 300px; }
-.viz--tall { min-height: 520px; }
+.viz { width: 100%; }          
+.viz--sm { min-height: 100px; }
+.viz--md { min-height: 300px; }
+.viz--tall { min-height: 500px; }
 
 .caption {
   margin-top: 8px;
