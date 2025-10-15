@@ -1,0 +1,98 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "GE15 — Selected State Only", "anchor": "start"},
+  "width": 300,
+  "height": 520,
+
+  "params": [
+    {
+      "name": "selected_state",
+      "value": "W.P. Kuala Lumpur",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Perlis","Kedah","Pulau Pinang","Perak","Selangor",
+          "Negeri Sembilan","Melaka","Johor","Pahang","Terengganu",
+          "Kelantan","Sarawak","Sabah","W.P. Labuan",
+          "W.P. Kuala Lumpur","W.P. Putrajaya"
+        ],
+        "name": "State: "
+      }
+    }
+  ],
+
+  "projection": {"type": "mercator"},
+
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/js/parlimen.topojson",
+        "format": {"type": "topojson", "feature": "parlimen.topojson"}
+      },
+      "transform": [
+        {"filter": "datum.properties.state === selected_state"},
+        {
+          "lookup": "properties.parlimen",
+          "from": {
+            "data": {
+              "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_winningANDturnout_by_constituency.csv"
+            },
+            "key": "id_geo",
+            "fields": [
+              "state","code_parlimen","constituency",
+              "winning_party","winning_majority","turnout_percent"
+            ]
+          }
+        },
+        {
+          "lookup": "winning_party",
+          "from": {
+            "data": {
+              "values": [
+                {"coalition":"PH","full":"Pakatan Harapan (PH)"},
+                {"coalition":"PN","full":"Perikatan Nasional (PN)"},
+                {"coalition":"BN","full":"Barisan Nasional (BN)"},
+                {"coalition":"GPS","full":"Gabungan Parti Sarawak (GPS)"},
+                {"coalition":"GRS","full":"Gabungan Rakyat Sabah (GRS)"},
+                {"coalition":"WARISAN","full":"Parti Warisan Sabah (WARISAN)"},
+                {"coalition":"IND/OTH","full":"Independent / Others"}
+              ]
+            },
+            "key": "coalition",
+            "fields": ["full"]
+          },
+          "as": "winning_party_full"
+        }
+      ],
+      "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 2},
+      "encoding": {
+        "color": {
+          "field": "winning_party",
+          "type": "nominal",
+          "scale": {
+            "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
+            "range": ["#ea152c","#0089fd","#ff89c2","#036b7e","#af30c1","#ffcb09","#d2d1d6"]
+          },
+          "legend":null
+        },
+        "tooltip": [
+          {"field": "code_parlimen", "title": "Parliament Code"},
+          {"field": "constituency", "title": "Constituency"},
+          {"field": "state", "title": "State"},
+          {"field": "winning_party_full", "title": "Winner"},
+          {"field": "winning_majority", "type": "quantitative", "title": "Winning Majority", "format": ","},
+          {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".1f"}
+        ]
+      }
+    },
+
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/js/state.topojson",
+        "format": {"type": "topojson", "feature": "state.topojson"}
+      },
+      "transform": [{"filter": "datum.properties.state === selected_state"}],
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#000", "strokeWidth": 4}
+    }
+  ]
+}
