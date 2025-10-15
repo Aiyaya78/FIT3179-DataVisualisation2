@@ -3,6 +3,7 @@
   "title": {"text": "GE15 — Selected State Only", "anchor": "start"},
   "width": 300,
   "height": 520,
+  "autosize": {"type": "fit", "contains": "padding"},
 
   "params": [
     {

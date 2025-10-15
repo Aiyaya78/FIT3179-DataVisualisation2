@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "GE15 Constituency Turnout by State & Urban–Rural Class", "anchor": "start"},
-  "width": 500,
-  "height": 400,
+  "width": "container",
+  "height": "container",
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_turnoutANDurbanrural_by_constituency.csv"

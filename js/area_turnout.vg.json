@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {"text": "GE15 Turnout Distribution by Area Class", "anchor": "start"},
+  "width": 500,
+  "height": 260,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_turnoutANDurbanrural_by_constituency.csv"
+  },
+  "layer":[
+  {"params": [
+    {
+      "name": "classFilter",
+      "select": {"type": "point", "fields": ["urban_rural_classification"]},
+      "bind": "legend"
+    }
+  ],
+
+  "transform": [
+    {"filter": "isValid(datum.turnout_percent) && isValid(datum.urban_rural_classification)"},
+    {
+      "density": "turnout_percent",
+      "groupby": ["urban_rural_classification"],
+      "extent": [35, 100]        
+    }
+  ],
+  "mark": {"type": "area", "opacity": 0.5, "line": true},
+
+  "encoding": {
+    "x": {
+      "field": "value",           
+      "type": "quantitative",
+      "title": "Turnout (%)",
+      "scale": {"domain": [35, 100]}
+    },
+    "y": {
+      "field": "density",
+      "type": "quantitative",
+      "title": "Density (normalized)"
+    },
+    "color": {
+      "field": "urban_rural_classification",
+      "type": "nominal",
+      "title": "Area Class",
+      "scale": {
+        "domain": ["Rural", "Semi Urban", "Urban"],
+        "range": ["#ff7f0e", "#8dd3c7", "#6a3d9a"]
+      }
+    },
+      "opacity": {
+      "condition": {"param": "classFilter", "value": 0.5},
+      "value": 0.15
+    }
+  }
+},
+{
+      "data": { "values": [ { "x": 60 }, { "x": 80 } ] },
+      "mark": { "type": "rule", "strokeDash": [4,4], "stroke": "#767575", "strokeWidth": 2 },
+      "encoding": { "x": { "field": "x", "type": "quantitative" } }
+    },
+    {"data": {
+        "values": [
+          {
+            "x": 77.5,
+            "y": 0.095,
+            "label": "Most Semi Urban seats had turnout between 75–80%"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "fontSize": 11,
+        "fontWeight": "bold",
+        "fill": "#333",
+        "cornerRadius": 3,
+        "dy": -6
+      },
+      "encoding": {
+        "x": {"field": "x", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "label"}
+      }
+    }
+]
+,
+
+  "config": {
+    "axis": {"grid": true},
+    "view": {"stroke": null}
+  }
+}

@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Voters by Ethnicity", "anchor": "start"},
+  "title": {"text": "GE15 Registered Electors by Ethnicity", "anchor": "start"},
   "width": 300,
-  "height": 400,
+  "height": 300,
 
   "data": {
-    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_national.csv"
   },
 
   "transform": [
@@ -16,8 +16,23 @@
       ],
       "as": ["ethnicity","count"]
     },
+
+    {
+      "calculate": "datum.ethnicity === 'Orang Asli' ? 'Indigenous' : datum.ethnicity === 'Bumiputera Sabah' ? 'Sabah Natives' : datum.ethnicity === 'Bumiputera Sarawak' ? 'Sarawak Natives' : datum.ethnicity === 'Indians' ? 'Indian' : datum.ethnicity",
+      "as": "ethnicity_en"
+    },
+
     {"window": [{"op": "sum", "field": "count", "as": "total"}], "frame": [null, null]},
-    {"calculate": "datum.count / datum.total", "as": "pct"}
+    {"calculate": "datum.count / datum.total", "as": "pct"},
+
+    {"joinaggregate": [
+      {"op": "max", "field": "pct", "as": "max_pct"},
+      {"op": "min", "field": "pct", "as": "min_pct"}
+    ]},
+    {
+      "calculate": "datum.pct === datum.max_pct || datum.pct === datum.min_pct ? 'Extreme' : ''",
+      "as": "flag"
+    }
   ],
 
   "layer": [
@@ -25,7 +40,7 @@
       "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
       "encoding": {
         "x": {
-          "field": "ethnicity",
+          "field": "ethnicity_en",          
           "type": "nominal",
           "sort": {"field": "count", "order": "descending"},
           "axis": {"title": "Ethnicity"}
@@ -36,25 +51,18 @@
           "title": "Voters",
           "axis": {"grid": false}
         },
-        "color": {"value": "#a05195"},
-        "tooltip": [
-          {"field": "ethnicity", "title": "Ethnicity"},
-          {"field": "count", "type": "quantitative", "title": "Voters", "format": ","},
-          {"field": "pct", "type": "quantitative", "title": "Share", "format": ".1%"}
-        ]
-      }
-    },
-    {
-      "mark": {"type": "text", "dy": -6, "baseline": "bottom"},
-      "encoding": {
-        "x": {
-          "field": "ethnicity",
-          "type": "nominal",
-          "sort": {"field": "count", "order": "descending"}
+
+        "color": {
+          "condition": {"test": "datum.flag !== ''", "value": "#d62728"},
+          "value": "#bdbdbd"
         },
-        "y": {"field": "count", "type": "quantitative"},
-        "text": {"field": "pct", "type": "quantitative", "format": ".1%"},
-        "color": {"value": "#333"}
+
+        "tooltip": [
+          {"field": "ethnicity_en", "title": "Ethnicity"},
+          {"field": "count", "type": "quantitative", "title": "Voters", "format": ","},
+          {"field": "total", "type": "quantitative", "title": "Total Electors", "format": ","},
+          {"field": "pct", "type": "quantitative", "title": "Percentage of Electors", "format": ".2%"}
+        ]
       }
     }
   ],

@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Voters by Gender", "anchor": "start"},
+  "title": {"text": "GE15 Registered Electors by Gender", "anchor": "start"},
   "width": 300,
-  "height": 400,
+  "height": 300,
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
@@ -18,7 +18,7 @@
 
   "layer": [
     {
-      "mark": {"type": "arc", "innerRadius": 60},
+      "mark": {"type": "arc", "innerRadius": 70},
       "encoding": {
         "theta": {"field": "voters", "type": "quantitative"},
         "color": {
@@ -30,7 +30,6 @@
         },
         "tooltip": [
           {"field": "gender", "title": "Gender"},
-          {"field": "total", "type": "quantitative", "title": "Total electors", "format": ","},
           {"field": "voters", "type": "quantitative", "title": "Electors", "format": ","}
         ]
       }
@@ -38,7 +37,7 @@
     {
       "mark": {
         "type": "text",
-        "radius": 92,
+        "radius": 110,
         "lineBreak": "\n",
         "fontWeight": "bold",
         "fontSize": 12,
@@ -49,6 +48,25 @@
       "encoding": {
         "theta": {"field": "voters", "type": "quantitative", "stack": true},
         "text": {"field": "label2line"}
+      }
+    },
+    {
+      "transform": [
+        {"aggregate": [{"op": "sum", "field": "voters", "as": "total_voters"}]},
+        {"calculate": "'Total electors\\n' + format(datum.total_voters, ',d')", "as": "centerLabel"}
+      ],
+      "mark": {
+        "type": "text",
+        "align": "center",
+        "baseline": "middle",
+        "lineBreak": "\n",
+        "fontWeight": "bold",
+        "fontSize": 14
+      },
+      "encoding": {
+        "theta": {"value": 0},
+        "radius": {"value": 0},
+        "text": {"field": "centerLabel"}
       }
     }
   ],
