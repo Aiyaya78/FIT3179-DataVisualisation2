@@ -1,92 +1,81 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
   "title": {"text": "GE15 Turnout Distribution by Area Class", "anchor": "start"},
-  "width": 500,
-  "height": 260,
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_turnoutANDurbanrural_by_constituency.csv"
   },
-  "layer":[
-  {"params": [
-    {
-      "name": "classFilter",
-      "select": {"type": "point", "fields": ["urban_rural_classification"]},
-      "bind": "legend"
-    }
-  ],
 
   "transform": [
     {"filter": "isValid(datum.turnout_percent) && isValid(datum.urban_rural_classification)"},
     {
-      "density": "turnout_percent",
-      "groupby": ["urban_rural_classification"],
-      "extent": [35, 100]        
+      "bin": {"step": 5, "extent": [45, 90]},
+      "field": "turnout_percent",
+      "as": ["bin_start", "bin_end"]
+    },
+    {
+      "aggregate": [{"op": "count", "as": "count"}],
+      "groupby": ["urban_rural_classification", "bin_start", "bin_end"]
+    },
+    {
+      "joinaggregate": [{"op": "max", "field": "count", "as": "max_count"}],
+      "groupby": ["urban_rural_classification"]
+    },
+    {
+      "calculate": "format(datum.bin_start, '.0f') + '–' + format(datum.bin_end, '.0f') + '%'",
+      "as": "binLabel"
     }
   ],
-  "mark": {"type": "area", "opacity": 0.5, "line": true},
 
-  "encoding": {
-    "x": {
-      "field": "value",           
-      "type": "quantitative",
-      "title": "Turnout (%)",
-      "scale": {"domain": [35, 100]}
-    },
-    "y": {
-      "field": "density",
-      "type": "quantitative",
-      "title": "Density (normalized)"
-    },
-    "color": {
-      "field": "urban_rural_classification",
-      "type": "nominal",
-      "title": "Area Class",
-      "scale": {
-        "domain": ["Rural", "Semi Urban", "Urban"],
-        "range": ["#ff7f0e", "#8dd3c7", "#6a3d9a"]
-      }
-    },
-      "opacity": {
-      "condition": {"param": "classFilter", "value": 0.5},
-      "value": 0.15
+  "facet": {
+    "field": "urban_rural_classification",
+    "title": "Area Class",
+    "sort": ["Rural", "Semi Urban", "Urban"]
+  },
+
+  "spec": {
+    "mark": {"type": "bar"},
+    "encoding": {
+      "x": {
+        "bin": {"binned": true},  
+        "field": "bin_start",
+        "type": "quantitative",
+        "title": "Voter Turnout (%)",
+        "scale": {"domain": [45, 90]},
+        "axis": {
+          "grid": false                                     
     }
-  }
-},
-{
-      "data": { "values": [ { "x": 60 }, { "x": 80 } ] },
-      "mark": { "type": "rule", "strokeDash": [4,4], "stroke": "#767575", "strokeWidth": 2 },
-      "encoding": { "x": { "field": "x", "type": "quantitative" } }
-    },
-    {"data": {
-        "values": [
-          {
-            "x": 77.5,
-            "y": 0.095,
-            "label": "Most Semi Urban seats had turnout between 75–80%"
+      },
+      "x2": {"field": "bin_end"},  
+      "y": {
+        "field": "count",
+        "type": "quantitative",
+        "title": "Number of Constituencies"
+      },
+      "color": {
+        "condition": {
+          "test": "datum.count === datum.max_count",
+          "field": "urban_rural_classification",
+          "type": "nominal",
+          "legend": null,
+          "scale": {
+            "domain": ["Rural", "Semi Urban", "Urban"],
+            "range": ["#ff7f0e", "#8dd3c7", "#6a3d9a"]
           }
-        ]
+        },
+        "value": "#bdbdbd"
       },
-      "mark": {
-        "type": "text",
-        "align": "center",
-        "fontSize": 11,
-        "fontWeight": "bold",
-        "fill": "#333",
-        "cornerRadius": 3,
-        "dy": -6
-      },
-      "encoding": {
-        "x": {"field": "x", "type": "quantitative"},
-        "y": {"field": "y", "type": "quantitative"},
-        "text": {"field": "label"}
-      }
+      "tooltip": [
+        {"field": "urban_rural_classification", "title": "Area Class"},
+        {"field": "binLabel", "title": "Turnout Bin"},
+        {"field": "count", "type": "quantitative", "title": "Constituencies Count"}
+      ]
     }
-]
-,
+  },
 
   "config": {
     "axis": {"grid": true},
-    "view": {"stroke": null}
+    "view": {"stroke": null},
+    "facet": {"spacing": 12}
   }
 }
