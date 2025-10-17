@@ -1,11 +1,11 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Registered Electors by Ethnicity", "anchor": "start"},
+  "title": {"text": "GE15 Candidates by Ethnicity", "anchor": "start"},
   "width": 300,
   "height": 300,
 
   "data": {
-    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_candidate_summary.csv"
   },
 
   "transform": [
@@ -57,9 +57,9 @@
 
         "tooltip": [
           {"field": "ethnicity_en", "title": "Ethnicity"},
-          {"field": "count", "type": "quantitative", "title": "Electors Count", "format": ","},
-          {"field": "total", "type": "quantitative", "title": "Total Electors", "format": ","},
-          {"field": "pct", "type": "quantitative", "title": "Percentage of Electors", "format": ".2%"}
+          {"field": "count", "type": "quantitative", "title": "Candidates Count", "format": ","},
+          {"field": "total", "type": "quantitative", "title": "Total Candidates", "format": ","},
+          {"field": "pct", "type": "quantitative", "title": "Percentage of Candidates", "format": ".2%"}
         ]
       }
     }

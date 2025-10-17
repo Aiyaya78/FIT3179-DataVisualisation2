@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "Voter Turnout by State and Election (GE11–GE15)", "anchor": "start"},
-  "width": 600,
-  "height": 400,
+  "width": 400,
+  "height": 500,
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/state_turnout_2004to2022.csv"

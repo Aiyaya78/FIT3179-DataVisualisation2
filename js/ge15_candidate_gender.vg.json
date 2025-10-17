@@ -1,18 +1,18 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Registered Electors by Gender", "anchor": "start"},
+  "title": {"text": "GE15 Candidates by Gender", "anchor": "start"},
   "width": 300,
   "height": 300,
 
   "data": {
-    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
+    "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_candidate_summary.csv"
   },
 
   "transform": [
-    {"fold": ["male_electors", "female_electors"], "as": ["gender_key", "voters"]},
-    {"calculate": "datum.gender_key === 'male_electors' ? 'Male' : 'Female'", "as": "gender"},
-    {"window": [{"op": "sum", "field": "voters", "as": "total"}], "frame": [null, null]},
-    {"calculate": "datum.voters / datum.total", "as": "pct"},
+    {"fold": ["male_candidates", "female_candidates"], "as": ["gender_key", "candidates"]},
+    {"calculate": "datum.gender_key === 'male_candidates' ? 'Male' : 'Female'", "as": "gender"},
+    {"window": [{"op": "sum", "field": "candidates", "as": "total"}], "frame": [null, null]},
+    {"calculate": "datum.candidates / datum.total", "as": "pct"},
     {"calculate": "datum.gender + '\\n' + format(datum.pct, '.2%')", "as": "label2line"}
   ],
 
@@ -20,7 +20,7 @@
     {
       "mark": {"type": "arc", "innerRadius": 70},
       "encoding": {
-        "theta": {"field": "voters", "type": "quantitative"},
+        "theta": {"field": "candidates", "type": "quantitative"},
         "color": {
           "field": "gender",
           "type": "nominal",
@@ -30,7 +30,7 @@
         },
         "tooltip": [
           {"field": "gender", "title": "Gender"},
-          {"field": "voters", "type": "quantitative", "title": "Electors Count", "format": ","}
+          {"field": "candidates", "type": "quantitative", "title": "Candidates Count", "format": ","}
         ]
       }
     },
@@ -46,14 +46,14 @@
         "fill": "white"
       },
       "encoding": {
-        "theta": {"field": "voters", "type": "quantitative", "stack": true},
+        "theta": {"field": "candidates", "type": "quantitative", "stack": true},
         "text": {"field": "label2line"}
       }
     },
     {
       "transform": [
-        {"aggregate": [{"op": "sum", "field": "voters", "as": "total_voters"}]},
-        {"calculate": "'Total Electors\\n' + format(datum.total_voters, ',d')", "as": "centerLabel"}
+        {"aggregate": [{"op": "sum", "field": "candidates", "as": "total_candidates"}]},
+        {"calculate": "'Total Candidates\\n' + format(datum.total_candidates, ',d')", "as": "centerLabel"}
       ],
       "mark": {
         "type": "text",
