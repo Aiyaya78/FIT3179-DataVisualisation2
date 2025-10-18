@@ -29,6 +29,24 @@
         "fields": ["full"]
       }
     },
+    {
+    "lookup": "coalition",
+    "from": {
+      "data": {
+        "values": [
+          {"coalition": "PH", "english": "Alliance of Hope (PH)"},
+          {"coalition": "PN", "english": "National Alliance (PN)"},
+          {"coalition": "BN", "english": "National Front (BN)"},
+          {"coalition": "GPS", "english": "Sarawak Parties Alliance (GPS)"},
+          {"coalition": "GRS", "english": "Sabah People's Coalition (GRS)"},
+          {"coalition": "WARISAN", "english": "Heritage Party (WARISAN)"},
+          {"coalition": "IND/OTH", "english": "Independent / Others"}
+        ]
+      },
+      "key": "coalition",
+      "fields": ["english"]
+    }
+    },
     {"joinaggregate": [{"op": "sum", "field": "seats", "as": "totalSeats"}]},
     {"calculate": "datum.seats / datum.totalSeats * 100", "as": "pct"},
     {"calculate": "format(datum.pct, '.1f') + '%'", "as": "pctLabel"}
@@ -84,13 +102,36 @@
           }
         },
         "tooltip": [
-          {"field": "full", "title": "Party"},
-          {"field": "seats", "title": "Seats"},
-          {"field": "totalSeats", "title": "Total Seats"},
+          {"field": "full", "title": "Party (Malay)"},
+          {"field": "english", "title": "Party (English)"},
+          {"field": "seats", "title": "Seats Won"},
+          {"field": "totalSeats", "title": "Total Parliamentary Seats"},
           {"field": "pctLabel", "title": "Seat Share"}
         ]
       }
-    }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "stroke": "#000000",
+        "strokeDash": [4, 4],
+        "strokeWidth": 2
+      },
+      "encoding": {
+        "x": {"datum": 112},
+        "size": {"value": 2},
+        "color": {"value": "#000"}
+      }
+      },
+      {
+        "mark": {"type": "text", "align": "center", "fontWeight": "bold", "fontSize": 12, "dy": -10},
+        "encoding": {
+          "x": {"datum": 112},
+          "y": {"value": 0},
+          "text": {"value": "Majority (112)"}
+        }
+      }
+    
   ],
 
   "config": {

@@ -14,8 +14,14 @@
         "options": [
           "Perlis","Kedah","Pulau Pinang","Perak","Selangor",
           "Negeri Sembilan","Melaka","Johor","Pahang","Terengganu",
-          "Kelantan","Sarawak","Sabah","W.P. Labuan",
-          "W.P. Kuala Lumpur","W.P. Putrajaya"
+          "Kelantan","Sarawak","Sabah",
+          "W.P. Labuan","W.P. Kuala Lumpur","W.P. Putrajaya"
+        ],
+        "labels": [
+          "Perlis","Kedah","Penang","Perak","Selangor",
+          "Negeri Sembilan","Malacca","Johor","Pahang","Terengganu",
+          "Kelantan","Sarawak","Sabah",
+          "Labuan","Kuala Lumpur","Putrajaya"
         ],
         "name": "State: "
       }
@@ -63,7 +69,52 @@
             "fields": ["full"]
           },
           "as": "winning_party_full"
-        }
+        },
+        {
+          "lookup": "winning_party",
+          "from": {
+            "data": {
+              "values": [
+                {"coalition": "PH", "english": "Alliance of Hope (PH)"},
+                {"coalition": "PN", "english": "National Alliance (PN)"},
+                {"coalition": "BN", "english": "National Front (BN)"},
+                {"coalition": "GPS", "english": "Sarawak Parties Alliance (GPS)"},
+                {"coalition": "GRS", "english": "Sabah People's Coalition (GRS)"},
+                {"coalition": "WARISAN", "english": "Heritage Party (WARISAN)"},
+                {"coalition": "IND/OTH", "english": "Independent / Others"}
+              ]
+            },
+            "key": "coalition",
+            "fields": ["english"]
+          }
+          },
+          {
+            "lookup": "state",
+            "from": {
+              "data": {
+                "values": [
+                  {"state": "Johor", "state_en": "Johor"},
+                  {"state": "Kedah", "state_en": "Kedah"},
+                  {"state": "Kelantan", "state_en": "Kelantan"},
+                  {"state": "Melaka", "state_en": "Malacca"},
+                  {"state": "Negeri Sembilan", "state_en": "Negeri Sembilan"},
+                  {"state": "Pahang", "state_en": "Pahang"},
+                  {"state": "Perak", "state_en": "Perak"},
+                  {"state": "Perlis", "state_en": "Perlis"},
+                  {"state": "Pulau Pinang", "state_en": "Penang"},
+                  {"state": "Sabah", "state_en": "Sabah"},
+                  {"state": "Sarawak", "state_en": "Sarawak"},
+                  {"state": "Selangor", "state_en": "Selangor"},
+                  {"state": "Terengganu", "state_en": "Terengganu"},
+                  {"state": "Wilayah Persekutuan Kuala Lumpur", "state_en": "Federal Territory of Kuala Lumpur"},
+                  {"state": "Wilayah Persekutuan Labuan", "state_en": "Federal Territory of Labuan"},
+                  {"state": "Wilayah Persekutuan Putrajaya", "state_en": "Federal Territory of Putrajaya"}
+                ]
+              },
+              "key": "state",
+              "fields": ["state_en"]
+            }
+          }
       ],
       "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 2},
       "encoding": {
@@ -79,8 +130,8 @@
         "tooltip": [
           {"field": "code_parlimen", "title": "Parliament Code"},
           {"field": "constituency", "title": "Constituency"},
-          {"field": "state", "title": "State"},
-          {"field": "winning_party_full", "title": "Winner"},
+          {"field": "state_en", "title": "State"},
+          {"field": "english", "title": "Winner"},
           {"field": "winning_majority", "type": "quantitative", "title": "Winning Majority", "format": ","},
           {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".1f"}
         ]

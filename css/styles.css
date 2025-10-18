@@ -1,130 +1,125 @@
-/* Reset-ish */
-:root {
-  --bg: #0f172a;        /* slate-900 backdrop */
-  --card: #ffffff;      /* white cards */
-  --text: #0b1220;      /* dark text */
-  --muted: #64748b;     /* slate-500 */
-  --maxw: 1000px;
+:root{
+  --maxw: 1000px;          /* hard page max-width */
   --gap: 16px;
+  --bg: #0f172a;           /* dark backdrop */
+  --card: #fff;
+  --ink: #0b1220;
+  --muted: #64748b;
 }
 
-* { box-sizing: border-box; }
-html, body { margin: 50; padding: 10; }
-body { background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+*{ box-sizing:border-box; }
+html,body{ margin:0; }
+body{
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--ink);
+}
 
-/* Page grid */
-.page {
-  max-width: var(--maxw);
-  margin: 24px auto 64px;
-  padding: 0 var(--gap);
-  display: grid;
+/* Page grid (3 columns) */
+.page{
+  max-width:var(--maxw);
+  margin:24px auto 64px;
+  padding:0 var(--gap);
+  display:grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   grid-auto-rows: auto;
-  gap: var(--gap);
+  gap:var(--gap);
   grid-template-areas:
-    "title  title  title"
-    "bar    bar    bar"
-    "map    map    map"
-    "d1     d2     d3"
-    "bubble bubble d4"
-    "heat   heat   d5"
-    "small1 small2 small3";
+    "title  title title"
+    "lolli  lolli desc1"
+    "map1   map1  map2"
+    "desc2  desc3  desc4"
+    "vTitle vTitle vTitle"
+    "facet  facet  desc5"
+    "heat   heat   desc6"
+    "dTitle dTitle dTitle"
+    "vAge   vGen   vEth"
+    "desc7  desc8  desc9"
+    "cTitle cTitle cTitle"
+    "cAge   cGen   cEth"
+    "desc10 desc11 desc12";
 }
 
 /* Cards */
-.card {
-  background: var(--card);
-  border-radius: 14px;
-  padding: 14px 16px 10px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+.card{
+  background:var(--card);
+  border-radius:14px;
+  padding:14px 16px 12px;
+  box-shadow:0 6px 18px rgba(0,0,0,.08);
 }
+.card--title{ text-align:center; padding:22px 18px; }
 
-.card--title {
-  grid-area: title;
-  text-align: center;
-  padding: 20px 18px;
-}
+.card__title{ margin:0 0 8px; font-size:18px; }
+.subtitle{ margin:6px 0 0; color:var(--muted); }
 
-.card--wide{ /* full width if you want to force it */
-  grid-column: 1 / -1;
-}
+/* Area hooks (attribute selectors keep markup simple) */
+[style*="grid-area:title"]{ grid-area:title; }
+[style*="grid-area:lolli"]{ grid-area:lolli; }
+[style*="grid-area:desc1"]{ grid-area:desc1; }
+[style*="grid-area:map1"]{ grid-area:map1; }
+[style*="grid-area:map2"]{ grid-area:map2; }
+[style*="grid-area:desc2"]{ grid-area:desc2; }
+[style*="grid-area:desc3"]{ grid-area:desc3; }
+[style*="grid-area:desc4"]{ grid-area:desc4; }
+[style*="grid-area:vTitle"]{ grid-area:vTitle; }
+[style*="grid-area:facet"]{ grid-area:facet; }
+[style*="grid-area:desc5"]{ grid-area:desc5; }
+[style*="grid-area:heat"]{ grid-area:heat; }
+[style*="grid-area:desc6"]{ grid-area:desc6; }
+[style*="grid-area:dTitle"]{ grid-area:dTitle; }
+[style*="grid-area:vAge"]{ grid-area:vAge; }
+[style*="grid-area:vGen"]{ grid-area:vGen; }
+[style*="grid-area:vEth"]{ grid-area:vEth; }
+[style*="grid-area:desc7"]{ grid-area:desc7; }
+[style*="grid-area:desc8"]{ grid-area:desc8; }
+[style*="grid-area:desc9"]{ grid-area:desc9; }
+[style*="grid-area:cTitle"]{ grid-area:cTitle; }
+[style*="grid-area:cAge"]{ grid-area:cAge; }
+[style*="grid-area:cGen"]{ grid-area:cGen; }
+[style*="grid-area:cEth"]{ grid-area:cEth; }
+[style*="grid-area:desc10"]{ grid-area:desc10; }
+[style*="grid-area:desc11"]{ grid-area:desc11; }
+[style*="grid-area:desc12"]{ grid-area:desc12; }
 
-.card--wide-left {
-  grid-column: 1 / span 2;
-}
+/* Viz containers (let Vega fill them) */
+.viz{ width:100%; min-height:280px; }
+.viz--map   { width: 100%; height: 500px; }   /* whole nation */
+.viz--mapSm { min-height:420px; }   /* state zoom  */
+.viz--tall  { min-height:500px; }
 
-.card__title {
-  font-size: 18px;
-  margin: 0 0 8px;
-}
+/* Ensure embeds fill card width */
+.vega-embed, .vega-embed > * { width:100% !important; }
 
-.subtitle {
-  margin: 4px 0 0;
-  color: var(--muted);
-}
-
-/* Grid area mapping */
-[style*="grid-area: bar"]   { grid-area: bar; }
-[style*="grid-area: map"]   { grid-area: map; }
-[style*="grid-area: d1"]    { grid-area: d1; }
-[style*="grid-area: d2"]    { grid-area: d2; }
-[style*="grid-area: d3"]    { grid-area: d3; }
-[style*="grid-area: bubble"]{ grid-area: bubble; }
-[style*="grid-area: d4"]    { grid-area: d4; }
-[style*="grid-area: heat"]  { grid-area: heat; }
-[style*="grid-area: d5"]    { grid-area: d5; }
-[style*="grid-area: small1"]{ grid-area: small1; }
-[style*="grid-area: small2"]{ grid-area: small2; }
-[style*="grid-area: small3"]{ grid-area: small3; }
-
-/* Visualization boxes */
-.viz { width: 100%; }          
-.viz--sm { min-height: 100px; }
-.viz--md { min-height: 300px; }
-.viz--tall { min-height: 500px; }
-
-.caption {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 13px;
-}
-
-/* Vega embeds should fill their container */
-.vega-embed, .vega-embed > * { width: 100% !important; }
-
-/* Responsive */
-@media (max-width: 1024px) {
-  .page {
-    grid-template-areas:
-      "title  title  title"
-      "bar    bar    bar"
-      "map    map    map"
-      "d1     d2     d3"
-      "bubble bubble bubble"
-      "d4     d4     d4"
-      "heat   heat   heat"
-      "d5     d5     d5"
-      "small1 small2 small3";
-  }
-}
-
-@media (max-width: 760px) {
-  .page {
+/* Responsive: stack on narrower screens */
+@media (max-width: 800px){
+  .page{
     grid-template-columns: 1fr;
     grid-template-areas:
       "title"
-      "bar"
-      "map"
-      "d1"
-      "d2"
-      "d3"
-      "bubble"
-      "d4"
+      "lolli"
+      "desc1"
+      "map1"
+      "map2"
+      "desc2"
+      "desc3"
+      "desc4"
+      "facet"
+      "desc5"
       "heat"
-      "d5"
-      "small1"
-      "small2"
-      "small3";
+      "desc6"
+      "vAge"
+      "vGen"
+      "vEth"
+      "desc7"
+      "desc8"
+      "desc9"
+      "cAge"
+      "cGen"
+      "cEth"
+      "desc10"
+      "desc11"
+      "desc12";
   }
-  .viz--tall { min-height: 420px; }
+  .viz--map{   min-height:440px; }
+  .viz--mapSm{ min-height:360px; }
 }

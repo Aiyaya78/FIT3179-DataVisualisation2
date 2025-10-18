@@ -14,102 +14,101 @@
 </head>
 <body>
   <main class="page">
-    <!-- Title -->
-    <header class="card card--title" aria-label="Title">
-      <h1>Malaysia’s 15th General Election (GE15)</h1>
-      <p class="subtitle">Results, turnout and electorate profile</p>
-    </header>
+  <header class="card card--title" style="grid-area:title">
+    <h1>Malaysia’s 15th General Election (GE15)</h1>
+    <p class="subtitle">Results, turnout and electorate profile</p>
+  </header>
 
-    <!-- 1) Single stacked bar -->
-    <section class="card" style="grid-area: bar">
-      <h2 class="card__title">Parliament Seats by Coalition</h2>
-      <div id="chart1-bar" class="viz viz--sm"></div>
-    </section>
+  <section class="card" style="grid-area:lolli">
+    <h2 class="card__title">Parliament Seats (Lollipop)</h2>
+    <div id="viz-lollipop" class="viz"></div>
+  </section>
+  <aside class="card" style="grid-area:desc1"><p>Short explainer…</p></aside>
 
-    <!-- 2) Big map -->
-    <section class="card card--wide" style="grid-area: map">
-      <h2 class="card__title">Constituency Winners (Interactive Map)</h2>
-      <div id="chart2-map" class="viz viz--tall"></div>
-    </section>
+  <section class="card" style="grid-area:map1">
+    <h2 class="card__title">Map — Whole Nation</h2>
+    <div id="viz-map-all" class="viz viz--map"></div>
+  </section>
+  <section class="card" style="grid-area:map2">
+    <h2 class="card__title">Map — State Zoom</h2>
+    <div id="viz-map-state" class="viz viz--mapSm"></div>
+  </section>
 
-    <!-- Map descriptions (3 columns) -->
-    <section class="card" style="grid-area: d1">
-      <h3 class="card__title">How to read</h3>
-      <p>Colours show the winning coalition in each parliamentary constituency. Use the legend to filter and the zoom control / dropdown to focus on a state.</p>
-    </section>
-    <section class="card" style="grid-area: d2">
-      <h3 class="card__title">Why it matters</h3>
-      <p>The geographic breakdown reveals regional coalitions and urban–rural differences that aggregate charts can hide.</p>
-    </section>
-    <section class="card" style="grid-area: d3">
-      <h3 class="card__title">Data</h3>
-      <p>Winners and turnout are compiled from GE15 official tallies; boundaries are the national parliamentary constituencies.</p>
-    </section>
+  <aside class="card" style="grid-area:desc2">…</aside>
+  <aside class="card" style="grid-area:desc3">…</aside>
+  <aside class="card" style="grid-area:desc4">…</aside>
 
-    <!-- 3) Bubble plot (constituency turnout) + text -->
-    <section class="card card--wide-left" style="grid-area: bubble">
-      <h2 class="card__title">Constituency Turnout by State & Urban–Rural Class</h2>
-      <div id="chart3-bubble" class="viz viz--md"></div>
-    </section>
-    <section class="card" style="grid-area: d4">
-      <h3 class="card__title">What to look for</h3>
-      <p>Hover for details. Click legend to focus on Rural, Semi-Urban or Urban seats. Larger circles (if enabled) indicate more registered voters.</p>
-    </section>
+  <section class="card card--subtitle" style="grid-area:vTitle">
+  <h2 class="card__title">Voter</h2>
+  <p class="subtitle"> ...</p>
+  </section>
 
-    <!-- 4) Heatmap (turnout by state & year) + text -->
-    <section class="card card--wide-left" style="grid-area: heat">
-      <h2 class="card__title">Voter Turnout by State and Election (GE11–GE15)</h2>
-      <div id="chart4-heatmap" class="viz viz--md"></div>
-    </section>
-    <section class="card" style="grid-area: d5">
-      <h3 class="card__title">Trend insight</h3>
-      <p>Use the region selector to compare groups of states. Darker shades indicate higher turnout.</p>
-    </section>
+  <section class="card" style="grid-area:facet">
+    <h2 class="card__title">Turnout — Faceted Histogram</h2>
+    <div id="viz-facet" class="viz viz--tall"></div>
+  </section>
+  <aside class="card" style="grid-area:desc5">…</aside>
 
-    <!-- 5–7) Small multiples: Age, Gender, Ethnicity -->
-    <section class="card" style="grid-area: small1">
-      <h2 class="card__title">Voters by Age Group</h2>
-      <div id="chart5-age" class="viz viz--md"></div>
-      <p class="caption">Share and absolute counts of registered voters by age band.</p>
-    </section>
+  <section class="card" style="grid-area:heat">
+    <h2 class="card__title">Turnout Heatmap (GE11–GE15)</h2>
+    <div id="viz-heat" class="viz viz--tall"></div>
+  </section>
+  <aside class="card" style="grid-area:desc6">…</aside>
 
-    <section class="card" style="grid-area: small2">
-      <h2 class="card__title">Voters by Gender</h2>
-      <div id="chart6-gender" class="viz viz--md"></div>
-      <p class="caption">Male vs female share of the GE15 electorate.</p>
-    </section>
+  <section class="card card--subtitle" style="grid-area:dTitle">
+  <h2 class="card__title">Voter Demographics</h2>
+  <p class="subtitle">A closer look at the age, gender, and ethnic composition of Malaysia’s electorate.</p>
+  </section>
 
-    <section class="card" style="grid-area: small3">
-      <h2 class="card__title">Voters by Ethnicity</h2>
-      <div id="chart7-ethnicity" class="viz viz--md"></div>
-      <p class="caption">Ethnic composition of the national electorate.</p>
-    </section>
-  </main>
+  <section class="card" style="grid-area:vAge"><h2 class="card__title">Voters — Age</h2><div id="viz-v-age" class="viz"></div></section>
+  <section class="card" style="grid-area:vGen"><h2 class="card__title">Voters — Gender</h2><div id="viz-v-gen" class="viz"></div></section>
+  <section class="card" style="grid-area:vEth"><h2 class="card__title">Voters — Ethnicity</h2><div id="viz-v-eth" class="viz"></div></section>
 
-  <!-- Embed script -->
-  <script>
-    const opts = { actions: false, renderer: "canvas" };
+  <aside class="card" style="grid-area:desc7">…</aside>
+  <aside class="card" style="grid-area:desc8">…</aside>
+  <aside class="card" style="grid-area:desc9">…</aside>
 
-    vegaEmbed('#chart1-bar',
-      'js/result_bar.vg.json', opts);
+  <section class="card card--subtitle" style="grid-area:cTitle">
+  <h2 class="card__title">CndidateDemographics</h2>
+  <p class="subtitle">A closer look at the age, gender, and ethnic composition of Malaysia’s electorate.</p>
+  </section>
 
-    vegaEmbed('#chart2-map',
-      'js/parlimen_all_map.vg.json', opts);
+  <section class="card" style="grid-area:cAge"><h2 class="card__title">Candidates — Age</h2><div id="viz-c-age" class="viz"></div></section>
+  <section class="card" style="grid-area:cGen"><h2 class="card__title">Candidates — Gender</h2><div id="viz-c-gen" class="viz"></div></section>
+  <section class="card" style="grid-area:cEth"><h2 class="card__title">Candidates — Ethnicity</h2><div id="viz-c-eth" class="viz"></div></section>
 
-    vegaEmbed('#chart3-bubble',
-      'js/bubble_turnoutGE15.vg.json', opts);
+  <aside class="card" style="grid-area:desc10">…</aside>
+  <aside class="card" style="grid-area:desc11">…</aside>
+  <aside class="card" style="grid-area:desc12">…</aside>
+</main>
 
-    vegaEmbed('#chart4-heatmap',
-      'js/heatmap_turnoutGE11toGE15.vg.json', opts);
+<script>
+  const opts = { actions: false, renderer: "canvas" };
 
-    vegaEmbed('#chart5-age',
-      'js/ge15_voter_age.vg.json', opts);
+  // 1. Lollipop / Bar
+  vegaEmbed('#viz-lollipop', 'js/result_bar.vg.json', opts);
 
-    vegaEmbed('#chart6-gender',
-      'js/ge15_voter_gender.vg.json', opts);
+  // 2. Whole-nation map
+  vegaEmbed('#viz-map-all', 'js/parlimen_all_map.vg.json', opts);
 
-    vegaEmbed('#chart7-ethnicity',
-      'js/ge15_voter_ethnicity.vg.json', opts);
-  </script>
+  // 3. State zoom map
+  vegaEmbed('#viz-map-state', 'js/parlimen_state_map.vg.json', opts);
+
+  // 4. Facet histogram
+  vegaEmbed('#viz-facet', 'js/area_turnout.vg.json', opts);
+
+  // 5. Turnout heatmap
+  vegaEmbed('#viz-heat', 'js/heatmap_turnoutGE11toGE15.vg.json', opts);
+
+  // 6–8. Voters: age / gender / ethnicity
+  vegaEmbed('#viz-v-age', 'js/ge15_voter_age.vg.json', opts);
+  vegaEmbed('#viz-v-gen', 'js/ge15_voter_gender.vg.json', opts);
+  vegaEmbed('#viz-v-eth', 'js/ge15_voter_ethnicity.vg.json', opts);
+
+  // 9–11. Candidates: age / gender / ethnicity
+  vegaEmbed('#viz-c-age', 'js/ge15_candidate_age.vg.json', opts);
+  vegaEmbed('#viz-c-gen', 'js/ge15_candidate_gender.vg.json', opts);
+  vegaEmbed('#viz-c-eth', 'js/ge15_candidate_ethnicity.vg.json', opts);
+</script>
 </body>
 </html>

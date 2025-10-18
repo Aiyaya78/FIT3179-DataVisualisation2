@@ -1,9 +1,9 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {"text": "GE15 Constituency-Level Results by Winning Party", "anchor": "start"},
-  "width": "container",
-  "height": "container",
-  "autosize": {"type": "fit", "contains": "padding"},
+  "width": 1000,
+  "height": 500,
+  "autosize": {"type": "fit-x", "resize": true},
   "projection": {"type": "mercator"},
 
   "layer": [
@@ -56,8 +56,54 @@
           },
           "as": "winning_party_full"
         },
-        {"filter": "isValid(datum.winning_party)"}  
+        {
+          "lookup": "winning_party",
+          "from": {
+            "data": {
+              "values": [
+                {"coalition": "PH", "english": "Alliance of Hope (PH)"},
+                {"coalition": "PN", "english": "National Alliance (PN)"},
+                {"coalition": "BN", "english": "National Front (BN)"},
+                {"coalition": "GPS", "english": "Sarawak Parties Alliance (GPS)"},
+                {"coalition": "GRS", "english": "Sabah People's Coalition (GRS)"},
+                {"coalition": "WARISAN", "english": "Heritage Party (WARISAN)"},
+                {"coalition": "IND/OTH", "english": "Independent / Others"}
+              ]
+            },
+            "key": "coalition",
+            "fields": ["english"]
+          }
+          },
+        {"filter": "isValid(datum.winning_party)"} ,
+        {
+          "lookup": "state",
+          "from": {
+            "data": {
+              "values": [
+                {"state": "Johor", "state_en": "Johor"},
+                {"state": "Kedah", "state_en": "Kedah"},
+                {"state": "Kelantan", "state_en": "Kelantan"},
+                {"state": "Melaka", "state_en": "Malacca"},
+                {"state": "Negeri Sembilan", "state_en": "Negeri Sembilan"},
+                {"state": "Pahang", "state_en": "Pahang"},
+                {"state": "Perak", "state_en": "Perak"},
+                {"state": "Perlis", "state_en": "Perlis"},
+                {"state": "Pulau Pinang", "state_en": "Penang"},
+                {"state": "Sabah", "state_en": "Sabah"},
+                {"state": "Sarawak", "state_en": "Sarawak"},
+                {"state": "Selangor", "state_en": "Selangor"},
+                {"state": "Terengganu", "state_en": "Terengganu"},
+                {"state": "Wilayah Persekutuan Kuala Lumpur", "state_en": "Federal Territory of Kuala Lumpur"},
+                {"state": "Wilayah Persekutuan Labuan", "state_en": "Federal Territory of Labuan"},
+                {"state": "Wilayah Persekutuan Putrajaya", "state_en": "Federal Territory of Putrajaya"}
+              ]
+            },
+            "key": "state",
+            "fields": ["state_en"]
+          }
+        }
       ],
+
       "mark": {"type": "geoshape", "stroke": "white", "strokeWidth": 0.5},
       "encoding": {
         "color": {
@@ -72,7 +118,7 @@
             "orient": "bottom",
             "direction": "horizontal",
             "columns": 7,
-            "symbolType": "square",
+            "symbolType": "circle",
             "symbolSize": 300,
             "symbolStrokeWidth": 1.2,
             "title": "Winning Party",
@@ -90,8 +136,8 @@
         "tooltip": [
           {"field": "code_parlimen", "title": "Parliament Code"},
           {"field": "constituency", "title": "Constituency"},
-          {"field": "state", "title": "State"},
-          {"field": "winning_party_full", "title": "Winner"},
+          {"field": "state_en", "title": "State"},
+          {"field": "english", "title": "Winner"},
           {"field": "winning_majority", "type": "quantitative", "title": "Winning Majority", "format": ","},
           {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".1f"}
         ]
@@ -109,18 +155,18 @@
     {
       "data": {
         "values": [
-          {"state": "Perlis", "lon": 99, "lat": 6.6},
-          {"state": "Kedah", "lon": 99, "lat": 5.9},
-          {"state": "Pulau Pinang", "lon": 99, "lat": 5.3},
-          {"state": "Perak", "lon": 99, "lat": 4.7},
-          {"state": "Selangor", "lon": 99, "lat": 3.6},
-          {"state": "Negeri Sembilan", "lon": 99, "lat": 2.5},
-          {"state": "Melaka", "lon": 99, "lat": 2.15},
-          {"state": "Sarawak", "lon": 113, "lat": 4.4},
-          {"state": "Sabah", "lon": 113, "lat": 6.2},
-          {"state": "W.P. Labuan", "lon": 113, "lat": 5.3},
-          {"state": "W.P. Kuala Lumpur", "lon": 99, "lat": 3.2},
-          {"state": "W.P. Putrajaya", "lon": 99, "lat": 2.9}
+          {"state": "Perlis", "lon": 99.5, "lat": 6.6},
+          {"state": "Kedah", "lon": 99.5, "lat": 5.9},
+          {"state": "Penang", "lon": 99.5, "lat": 5.3},
+          {"state": "Perak", "lon": 99.5, "lat": 4.7},
+          {"state": "Selangor", "lon": 99.5, "lat": 3.6},
+          {"state": "Negeri Sembilan", "lon": 99.5, "lat": 2.5},
+          {"state": "Malacca", "lon": 99.5, "lat": 2.15},
+          {"state": "Sarawak", "lon": 113.5, "lat": 4.4},
+          {"state": "Sabah", "lon": 113.5, "lat": 6.2},
+          {"state": "Federal Territory of Labuan", "lon": 113.5, "lat": 5.3},
+          {"state": "Federal Territory of Kuala Lumpur", "lon": 99.5, "lat": 3.2},
+          {"state": "Federal Territory of Putrajaya", "lon": 99.5, "lat": 2.9}
         ]
       },
       "mark": {
@@ -141,10 +187,10 @@
     {
       "data": {
         "values": [
-          {"state": "Johor", "lon": 105, "lat": 1.8},
-          {"state": "Pahang", "lon": 105, "lat": 3.4},
-          {"state": "Terengganu", "lon": 105, "lat": 5.0},
-          {"state": "Kelantan", "lon": 105, "lat": 6.1}
+          {"state": "Johor", "lon": 104.5, "lat": 1.8},
+          {"state": "Pahang", "lon": 104.5, "lat": 3.4},
+          {"state": "Terengganu", "lon": 104.5, "lat": 5.0},
+          {"state": "Kelantan", "lon": 104.5, "lat": 6.1}
           
           
         ]
@@ -166,22 +212,22 @@
     {
     "data": {
         "values": [
-        {"lon1": 100.18, "lat1": 6.6, "lon2": 99.0, "lat2": 6.6},
-        {"lon1": 100.35, "lat1": 5.9, "lon2": 99.0, "lat2": 5.9},
-        {"lon1": 100.17, "lat1": 5.3, "lon2": 99.0, "lat2": 5.3},
-        {"lon1": 100.6, "lat1": 4.7, "lon2": 99.0, "lat2": 4.7},
-        {"lon1": 101.1, "lat1": 3.6, "lon2": 99.0, "lat2": 3.6},
-        {"lon1": 101.82, "lat1": 2.5, "lon2": 99.0, "lat2": 2.5},
-        {"lon1": 102.3, "lat1": 2.15, "lon2": 99.0, "lat2": 2.15},
-        {"lon1": 101.65, "lat1": 3.2, "lon2": 99.0, "lat2": 3.2},
-        {"lon1": 101.67, "lat1": 2.9, "lon2": 99.0, "lat2": 2.9},
-        {"lon1": 113.95, "lat1": 4.4, "lon2": 113.0, "lat2": 4.4},
-        {"lon1": 116.2, "lat1": 6.2, "lon2": 113.0, "lat2": 6.2},
-        {"lon1": 115.15, "lat1": 5.3, "lon2": 113.0, "lat2": 5.3},
-        {"lon1": 104.15, "lat1": 1.8, "lon2": 105.0, "lat2": 1.8},
-        {"lon1": 103.42, "lat1": 3.4, "lon2": 105.0, "lat2": 3.4},
-        {"lon1": 103.3, "lat1": 5.0, "lon2": 105.0, "lat2": 5.0},
-        {"lon1": 102.4, "lat1": 6.1, "lon2": 105.0, "lat2": 6.1}
+        {"lon1": 100.18, "lat1": 6.6, "lon2": 99.5, "lat2": 6.6},
+        {"lon1": 100.35, "lat1": 5.9, "lon2": 99.5, "lat2": 5.9},
+        {"lon1": 100.17, "lat1": 5.3, "lon2": 99.5, "lat2": 5.3},
+        {"lon1": 100.6, "lat1": 4.7, "lon2": 99.5, "lat2": 4.7},
+        {"lon1": 101.1, "lat1": 3.6, "lon2": 99.5, "lat2": 3.6},
+        {"lon1": 101.82, "lat1": 2.5, "lon2": 99.5, "lat2": 2.5},
+        {"lon1": 102.3, "lat1": 2.15, "lon2": 99.5, "lat2": 2.15},
+        {"lon1": 101.65, "lat1": 3.2, "lon2": 99.5, "lat2": 3.2},
+        {"lon1": 101.67, "lat1": 2.9, "lon2": 99.5, "lat2": 2.9},
+        {"lon1": 113.95, "lat1": 4.4, "lon2": 113.5, "lat2": 4.4},
+        {"lon1": 116.2, "lat1": 6.2, "lon2": 113.5, "lat2": 6.2},
+        {"lon1": 115.15, "lat1": 5.3, "lon2": 113.5, "lat2": 5.3},
+        {"lon1": 104.15, "lat1": 1.8, "lon2": 104.5, "lat2": 1.8},
+        {"lon1": 103.42, "lat1": 3.4, "lon2": 104.5, "lat2": 3.4},
+        {"lon1": 103.3, "lat1": 5.0, "lon2": 104.5, "lat2": 5.0},
+        {"lon1": 102.4, "lat1": 6.1, "lon2": 104.5, "lat2": 6.1}
         ]
     },
     "mark": {"type": "rule", "stroke": "#878787", "strokeWidth": 0.8},
