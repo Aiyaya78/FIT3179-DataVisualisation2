@@ -25,7 +25,7 @@
           "field": "gender",
           "type": "nominal",
           "title": null,
-          "scale": {"domain": ["Male", "Female"], "range": ["#3182bd", "#e377c2"]},
+          "scale": {"domain": ["Male", "Female"], "range": ["#ff5b03", "#0032ba"]},
           "legend":null
         },
         "tooltip": [

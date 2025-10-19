@@ -47,7 +47,7 @@
           "axis": {"grid": false}
         },
         "color": {
-          "condition": {"test": "datum.flag !== ''", "value": "#d62728"},
+          "condition": {"test": "datum.flag !== ''", "value": "#CF1717"},
           "value": "#bdbdbd"
         },
         "tooltip": [

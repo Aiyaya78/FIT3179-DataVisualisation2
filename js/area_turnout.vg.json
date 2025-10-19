@@ -48,7 +48,7 @@
         "condition": {
           "test": "datum.count === datum.max_count",
           "value": {
-            "expr": "datum.urban_rural_classification === 'Rural' ? '#f5942c' : datum.urban_rural_classification === 'Semi Urban' ? '#42b0d8' : '#0e6ae3'"
+            "expr": "datum.urban_rural_classification === 'Rural' ? '#FF7040' : datum.urban_rural_classification === 'Semi Urban' ? '#42b0d8' : '#0e6ae3'"
           }
         },
         "value": {

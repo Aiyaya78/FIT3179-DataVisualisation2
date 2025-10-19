@@ -1,7 +1,7 @@
 :root{
   --maxw: 1000px;
   --gap: 10px;
-  --bg: #d4cdcd;
+  --bg: #ffffff;
   --card: #ffffff;
   --ink: #0b1220;
   --muted: #595a5c;
@@ -20,8 +20,8 @@ p {
   line-height: 1.5;
   text-align: justify;
   margin-top: 0;
-  margin-bottom: 12px;
-  color: #3b3b3b;
+  margin-bottom: 10px;
+  color: #424242;
 }
 
 .card h3 {
@@ -71,13 +71,17 @@ body {
     "desc5  desc6  desc7"
     "cTitle cTitle cTitle"
     "cAge   cGen   cEth"
-    "desc8  desc9  desc10";
+    "desc8  desc9  desc10"
+    "meta   meta   meta";
 }
 
 /* Cards */
-.card{background:var(--card); border-radius:14px; padding:14px 16px 12px;
-      box-shadow:0 6px 18px rgba(90, 90, 90, 0.08)}
-.card--title{ text-align:center; padding:22px 18px }
+.card{background:var(--card); border-radius:0px; padding:14px 16px 12px;}
+.card--title{ 
+  text-align:center; 
+  padding:22px 18px ;
+  border-bottom:2px solid #3b3b3b;
+}
 .card__title{ margin:0 0 8px; font-size:18px }
 .subtitle{ color:var(--muted); margin:6px 0 0 }
 
@@ -86,6 +90,13 @@ body {
   margin-bottom: 8px;   
   line-height: 1.2;
 }
+
+.card--subtitle {
+  border-top: 1px solid #3b3b3b;   
+  padding-top: 14px;               
+  margin-top: 20px;                
+}
+
 
 /* Area hooks */
 [style*="grid-area:title"]{grid-area:title}
@@ -113,6 +124,7 @@ body {
 [style*="grid-area:desc8"]{grid-area:desc8}
 [style*="grid-area:desc9"]{grid-area:desc9}
 [style*="grid-area:desc10"]{grid-area:desc10}
+[style*="grid-area:meta"]{grid-area:meta}
 
 /* Viz containers */
 .viz{ width:100%; min-height:280px }
@@ -120,11 +132,31 @@ body {
 .viz--mapSm { width:100%; height:300px }  /* state zoom    */
 .viz--lolli  { width:100%; height:180px }
 .viz--hist  { width:100%; height:100px }
+.viz--heat  { width:100%; height:300px }
+.viz--sm  { width:100%; height:200px }
 
 .subtitle-tip {
   font-size: 0.7em;
   font-style: italic;
   color: #5f6b7a; 
+}
+
+[style*="grid-area:meta"] {
+  margin-top: 20px;
+  background: #ffffff;
+  border-radius: 0px;
+  padding: 12px 18px;
+  font-size: 13px;
+  color: #ffffff;
+  box-shadow: none;
+  border-top: 2px solid #3b3b3b;   /* soft gray */
+
+}
+[style*="grid-area:meta"] p {
+  text-align: justify;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #595959;
 }
 
 /* Mobile layout */
@@ -156,7 +188,8 @@ body {
       "cEth"
       "desc8"
       "desc9"
-      "desc10";
+      "desc10"
+      "meta";
   }
   .viz--map{ height:300px }
   .viz--mapSm{ height:300px }
