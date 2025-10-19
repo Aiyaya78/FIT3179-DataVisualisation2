@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Registered Electors by Gender", "anchor": "start"},
-  "width": 300,
-  "height": 300,
+    "width": "container",
+  "height": 200,
+  "autosize": {"type": "fit-x", "resize": true},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
@@ -18,7 +18,7 @@
 
   "layer": [
     {
-      "mark": {"type": "arc", "innerRadius": 70},
+      "mark": {"type": "arc", "innerRadius": 50},
       "encoding": {
         "theta": {"field": "voters", "type": "quantitative"},
         "color": {
@@ -37,10 +37,10 @@
     {
       "mark": {
         "type": "text",
-        "radius": 110,
+        "radius": 75,
         "lineBreak": "\n",
         "fontWeight": "bold",
-        "fontSize": 12,
+        "fontSize": 10,
         "align": "center",
         "baseline": "middle",
         "fill": "white"
@@ -61,7 +61,7 @@
         "baseline": "middle",
         "lineBreak": "\n",
         "fontWeight": "bold",
-        "fontSize": 14
+        "fontSize": 12
       },
       "encoding": {
         "theta": {"value": 0},

@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Candidates by Ethnicity", "anchor": "start"},
-  "width": 300,
-  "height": 300,
+    "width": "container",
+  "height": 200,
+  "autosize": {"type": "fit-x", "resize": true},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_candidate_summary.csv"
@@ -35,13 +35,13 @@
 
   "layer": [
     {
-      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3, "width":20},
       "encoding": {
         "x": {
           "field": "ethnicity_en",          
           "type": "nominal",
           "sort": {"field": "count", "order": "descending"},
-          "axis": {"title": "Ethnicity"}
+          "axis": {"title": "Ethnicity", "labelAngle": 0, "titlePadding":20}
         },
         "y": {
           "field": "count",

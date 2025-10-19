@@ -1,69 +1,59 @@
 {
-  "$schema": "https://vega.github.io/schema/vega-lite/v6.json",
-  "title": {"text": "GE15 Turnout Distribution by Area Class", "anchor": "start"},
-
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_turnoutANDurbanrural_by_constituency.csv"
   },
-
   "transform": [
     {"filter": "isValid(datum.turnout_percent) && isValid(datum.urban_rural_classification)"},
-    {
-      "bin": {"step": 5, "extent": [45, 90]},
-      "field": "turnout_percent",
-      "as": ["bin_start", "bin_end"]
-    },
-    {
-      "aggregate": [{"op": "count", "as": "count"}],
-      "groupby": ["urban_rural_classification", "bin_start", "bin_end"]
-    },
-    {
-      "joinaggregate": [{"op": "max", "field": "count", "as": "max_count"}],
-      "groupby": ["urban_rural_classification"]
-    },
-    {
-      "calculate": "format(datum.bin_start, '.0f') + '–' + format(datum.bin_end, '.0f') + '%'",
-      "as": "binLabel"
-    }
+    {"bin": {"step": 5, "extent": [45, 90]}, "field": "turnout_percent", "as": ["bin_start","bin_end"]},
+    {"aggregate": [{"op": "count", "as": "count"}],
+     "groupby": ["urban_rural_classification","bin_start","bin_end"]},
+    {"joinaggregate": [{"op": "max", "field": "count", "as": "max_count"}],
+     "groupby": ["urban_rural_classification"]},
+    {"calculate": "format(datum.bin_start, '.0f') + '–' + format(datum.bin_end, '.0f') + '%'", "as": "binLabel"}
+
   ],
 
   "facet": {
     "field": "urban_rural_classification",
-    "title": "Area Class",
-    "sort": ["Rural", "Semi Urban", "Urban"]
+    "type": "nominal",
+    "title": null,
+    "header": {         
+    "title": null,           
+    "labels": false,         
+    "labelExpr": "''"        
+  }
   },
-
   "spec": {
+    "width": 170,
+    "height": 200,
     "mark": {"type": "bar"},
     "encoding": {
       "x": {
-        "bin": {"binned": true},  
+        "bin": {"binned": true},
         "field": "bin_start",
         "type": "quantitative",
         "title": "Voter Turnout (%)",
         "scale": {"domain": [45, 90]},
-        "axis": {
-          "grid": false                                     
-    }
+        "axis": {"grid": false}
       },
-      "x2": {"field": "bin_end"},  
+      "x2": {"field": "bin_end"},
       "y": {
         "field": "count",
         "type": "quantitative",
-        "title": "Number of Constituencies"
+        "title": "Number of Constituencies",
+        "scale": {"domain": [0, 40]}
       },
       "color": {
         "condition": {
           "test": "datum.count === datum.max_count",
-          "field": "urban_rural_classification",
-          "type": "nominal",
-          "legend": null,
-          "scale": {
-            "domain": ["Rural", "Semi Urban", "Urban"],
-            "range": ["#ff7f0e", "#8dd3c7", "#6a3d9a"]
+          "value": {
+            "expr": "datum.urban_rural_classification === 'Rural' ? '#f5942c' : datum.urban_rural_classification === 'Semi Urban' ? '#42b0d8' : '#0e6ae3'"
           }
         },
-        "value": "#bdbdbd"
+        "value": {
+            "expr": "datum.urban_rural_classification === 'Rural' ? '#ffcc94' : datum.urban_rural_classification === 'Semi Urban' ? '#a7effa' : '#94c2ff'"
+          }
       },
       "tooltip": [
         {"field": "urban_rural_classification", "title": "Area Class"},
@@ -72,10 +62,10 @@
       ]
     }
   },
-
+  "resolve": {"scale": {"y": "shared"}},
   "config": {
-    "axis": {"grid": true},
     "view": {"stroke": null},
-    "facet": {"spacing": 12}
+    "facet": {"spacing": 10},
+    "axis": {"grid": true}
   }
 }

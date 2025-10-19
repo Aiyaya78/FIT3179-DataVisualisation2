@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Registered Electors by Age Group", "anchor": "start"},
-  "width": 300,
-  "height": 300,
+    "width": "container",
+  "height": 200,
+  "autosize": {"type": "fit-x", "resize": true},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_national.csv"
@@ -23,8 +23,7 @@
       "as": "age_label"
     },
     {"joinaggregate": [
-      {"op": "max", "field": "pct", "as": "max_pct"},
-      {"op": "min", "field": "pct", "as": "min_pct"}
+      {"op": "max", "field": "pct", "as": "max_pct"}
     ]},
     {
       "calculate": "datum.pct === datum.max_pct || datum.pct === datum.min_pct ? 'Extreme' : ''",
@@ -34,7 +33,7 @@
 
   "layer": [
     {
-      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3, "width":20},
       "encoding": {
         "x": {
           "field": "age_label", "type": "ordinal",
@@ -44,7 +43,7 @@
         "y": {
           "field": "count", "type": "quantitative",
           "title": "Voters",
-          "axis": {"grid": false}
+          "axis": {"grid": false, "format": "s"}
         },
         "color": {
           "condition": {"test": "datum.flag !== ''", "value": "#d62728"},

@@ -1,9 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Parliamentary Seats by Party", "anchor": "start"},
   "width": "container",
-  "height": "container",
-  "autosize": {"type": "fit", "contains": "padding"},
+  "height": 150,
+  "autosize": {"type": "fit-x", "resize": true},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/main/data/ge15_coalition_summary.csv",
@@ -60,7 +59,7 @@
         "x": {
           "field": "seats",
           "type": "quantitative",
-          "title": "Seats",
+          "title": "Number of Seats Won",
           "axis": {"grid": true},
           "scale": {"domainMin": 0}
         },
@@ -68,7 +67,7 @@
           "field": "coalition",
           "type": "nominal",
           "sort": ["PH", "PN", "BN", "GPS", "GRS", "IND/OTH", "WARISAN"],
-          "title": "Coalition"
+          "title": null
         },
         "color": {
           "field": "coalition",
@@ -76,7 +75,7 @@
           "legend": null,
           "scale": {
             "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
-            "range": ["#ea152c","#0089fd","#ff89c2","#036b7e","#af30c1","#ffcb09","#d2d1d6"]
+            "range": ["#bd0026","#1039ad","#15ace8","#ff4719","#fe9929","#fed976","#4ad7e8"]
           }
         }
       }
@@ -98,12 +97,12 @@
           "legend": null,
           "scale": {
             "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
-            "range": ["#ea152c","#0089fd","#ff89c2","#036b7e","#af30c1","#ffcb09","#d2d1d6"]
+            "range": ["#bd0026","#1039ad","#15ace8","#ff4719","#fe9929","#fed976","#4ad7e8"]
           }
         },
         "tooltip": [
-          {"field": "full", "title": "Party (Malay)"},
-          {"field": "english", "title": "Party (English)"},
+          {"field": "full", "title": "Coalition (Malay)"},
+          {"field": "english", "title": "Coalition (English)"},
           {"field": "seats", "title": "Seats Won"},
           {"field": "totalSeats", "title": "Total Parliamentary Seats"},
           {"field": "pctLabel", "title": "Seat Share"}
@@ -128,7 +127,7 @@
         "encoding": {
           "x": {"datum": 112},
           "y": {"value": 0},
-          "text": {"value": "Majority (112)"}
+          "text": {"value": "Majority"}
         }
       }
     
@@ -136,6 +135,14 @@
 
   "config": {
     "view": {"stroke": null},
-    "axis": {"grid": false}
+    "axis": {
+      "titleFontSize": 12,
+      "labelFontSize": 11,
+      "titlePadding": 8,
+      "domain": false,
+      "tickSize": 3,
+      "gridColor": "#e5e7eb"
+    }
+
   }
 }

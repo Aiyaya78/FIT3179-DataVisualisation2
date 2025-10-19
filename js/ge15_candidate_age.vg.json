@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Candidates by Age Group", "anchor": "start"},
-  "width": 300,
-  "height": 300,
+   "width": "container",
+  "height": 200,
+  "autosize": {"type": "fit-x", "resize": true},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/ge15_candidate_summary.csv"
@@ -34,7 +34,7 @@
 
   "layer": [
     {
-      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3},
+      "mark": {"type": "bar", "cornerRadiusTopLeft": 3, "cornerRadiusTopRight": 3, "width":20},
       "encoding": {
         "x": {
           "field": "age_label", "type": "ordinal",

@@ -1,8 +1,8 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "Voter Turnout by State and Election (GE11–GE15)", "anchor": "start"},
-  "width": 400,
-  "height": 500,
+  "width": "container",
+  "height": 300,
+  "autosize": {"type": "fit-x", "resize": true},
 
   "data": {
     "url": "https://raw.githubusercontent.com/Aiyaya78/FIT3179-DataVisualisation2/refs/heads/main/data/state_turnout_2004to2022.csv"
@@ -54,32 +54,75 @@
       "from": {
         "data": {
           "values": [
-            {"state": "Wilayah Persekutuan Kuala Lumpur", "short": "W.P. Kuala Lumpur"},
-            {"state": "Wilayah Persekutuan Putrajaya",   "short": "W.P. Putrajaya"},
-            {"state": "Wilayah Persekutuan Labuan",      "short": "W.P. Labuan"}
+            {"state": "Wilayah Persekutuan Kuala Lumpur", "short": "Kuala Lumpur"},
+            {"state": "Wilayah Persekutuan Putrajaya",   "short": "Putrajaya"},
+            {"state": "Wilayah Persekutuan Labuan",      "short": "Labuan"},
+            {"state": "Johor", "short": "Johor"},
+            {"state": "Kedah", "short": "Kedah"},
+            {"state": "Kelantan", "short": "Kelantan"},
+            {"state": "Melaka", "short": "Malacca"},
+            {"state": "Negeri Sembilan", "short": "Negeri Sembilan"},
+            {"state": "Pahang", "short": "Pahang"},
+            {"state": "Perak", "short": "Perak"},
+            {"state": "Perlis", "short": "Perlis"},
+            {"state": "Pulau Pinang", "short": "Penang"},
+            {"state": "Sabah", "short": "Sabah"},
+            {"state": "Sarawak", "short": "Sarawak"},
+            {"state": "Selangor", "short": "Selangor"},
+            {"state": "Terengganu", "short": "Terengganu"}
           ]
         },
         "key": "state",
         "fields": ["short"]
       }
     },
-    { "calculate": "isValid(datum.short) ? datum.short : datum.state", "as": "state_short" }
+    { "calculate": "isValid(datum.short) ? datum.short : datum.state", "as": "state_short" },
+    {
+            "lookup": "state",
+            "from": {
+              "data": {
+                "values": [
+                  {"state": "Johor", "state_en": "Johor"},
+                  {"state": "Kedah", "state_en": "Kedah"},
+                  {"state": "Kelantan", "state_en": "Kelantan"},
+                  {"state": "Melaka", "state_en": "Malacca"},
+                  {"state": "Negeri Sembilan", "state_en": "Negeri Sembilan"},
+                  {"state": "Pahang", "state_en": "Pahang"},
+                  {"state": "Perak", "state_en": "Perak"},
+                  {"state": "Perlis", "state_en": "Perlis"},
+                  {"state": "Pulau Pinang", "state_en": "Penang"},
+                  {"state": "Sabah", "state_en": "Sabah"},
+                  {"state": "Sarawak", "state_en": "Sarawak"},
+                  {"state": "Selangor", "state_en": "Selangor"},
+                  {"state": "Terengganu", "state_en": "Terengganu"},
+                  {"state": "Wilayah Persekutuan Kuala Lumpur", "state_en": "Federal Territory of Kuala Lumpur"},
+                  {"state": "Wilayah Persekutuan Labuan", "state_en": "Federal Territory of Labuan"},
+                  {"state": "Wilayah Persekutuan Putrajaya", "state_en": "Federal Territory of Putrajaya"}
+                ]
+              },
+              "key": "state",
+              "fields": ["state_en"]
+            }
+          }
 
   ],
 
   "layer": [
     {
-      "mark": {"type": "rect"},
+      "mark": {"type": "rect", "stroke": null},
       "encoding": {
         "x": {
           "field": "election", "type": "ordinal",
           "sort": ["GE11","GE12","GE13","GE14","GE15"],
-          "title": "Election"
+          "title": "Election",
+          "scale": {"paddingInner": 0, "paddingOuter": 0}
         },
         "y": {
           "field": "state_short", "type": "nominal",
           "title": "State",
-          "sort": {"field":"turnout_percent", "op":"mean", "order":"descending"}
+          "sort": {"field":"turnout_percent", "op":"mean", "order":"descending"},
+          "scale": {"paddingInner": 0, "paddingOuter": 0}
+          
         },
         "color": {
           "field": "turnout_percent", "type": "quantitative",
@@ -90,10 +133,11 @@
             "range":["#feedde","#fdd0a2","#fdae6b","#fd8d3c","#e6550d","#a63603"]}
         },
         "tooltip": [
-          {"field": "state", "title": "State"},
+          {"field": "state_en", "title": "State"},
           {"field": "election", "title": "Election"},
-          {"field": "turnout_percent", "type": "quantitative", "title": "Turnout (%)", "format": ".2f"},
-          {"field": "registered_voters", "type": "quantitative", "title": "Registered", "format": ","},
+          {"field": "year", "title": "Year"},
+          {"field": "turnout_percent", "type": "quantitative", "title": "Turnout Rate (%)", "format": ".2f"},
+          {"field": "registered_voters", "type": "quantitative", "title": "Registered Voter", "format": ","},
           {"field": "voted", "type": "quantitative", "title": "Voted", "format": ","}
         ]
       }

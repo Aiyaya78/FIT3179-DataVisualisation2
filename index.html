@@ -15,71 +15,119 @@
 <body>
   <main class="page">
   <header class="card card--title" style="grid-area:title">
-    <h1>Malaysia’s 15th General Election (GE15)</h1>
-    <p class="subtitle">Results, turnout and electorate profile</p>
+    <h1>Malaysia’s 15th General Election (GE15) in 2022</h1>
+    <p class="subtitle;" style="text-align:center;">Results, voter turnout, and the demographic profile of Malaysia’s electorate and candidates.</p>
   </header>
 
   <section class="card" style="grid-area:lolli">
-    <h2 class="card__title">Parliament Seats (Lollipop)</h2>
-    <div id="viz-lollipop" class="viz"></div>
+    <h2 class="card__title">GE15 Parliamentary Seats by Coalition</h2>
+    <p class="subtitle" style="font-size: 0.8em;">A simple majority requires 112 of 222 seats.</p>
+    <div id="viz-lollipop" class="viz--lolli"></div>
   </section>
-  <aside class="card" style="grid-area:desc1"><p>Short explainer…</p></aside>
+
+  <aside class="card" style="grid-area:desc1">
+  <h3>Outcome of GE15</h3>
+    <p>
+      The 15th General Election (GE15) resulted in <strong>Malaysia’s first-ever hung parliament</strong>, 
+      as no coalition secured the simple majority required to form a government.
+    </p>
+    <p>
+      Following the Yang di-Pertuan Agong’s advice to form a unity government, 
+      <strong><span style="color:#bd0026;">PH</span> allied with <span style="color:#15ace8;">PH</span>, <span style="color:#ff4719;">GPS</span>, <span style="color:#fe9929;">GRS</span>, <span style="color:#fed976;">WARISAN</span>, and several independents</strong>.  
+      PN declined to join and became the official opposition.
+    </p>
+    <p>The GE15 outcome set the stage for a realignment of political power across Malaysia, 
+      influencing subsequent alliances in both Peninsular and East Malaysia.</p>
+  </aside>
 
   <section class="card" style="grid-area:map1">
-    <h2 class="card__title">Map — Whole Nation</h2>
+    <h2 class="card__title">GE15 Results by Winning Coalition Across Malaysia</h2>
+    <p class="subtitle-tip">
+      Tip: Click a coalition in the legend to highlight the constituencies it won.
+    </p>
     <div id="viz-map-all" class="viz viz--map"></div>
   </section>
   <section class="card" style="grid-area:map2">
-    <h2 class="card__title">Map — State Zoom</h2>
+    <h2 class="card__title" id="state-map-title">GE15 Results by Winning Coalition in Selected State</h2>
+    <p class="subtitle-tip">Tip: Use the dropdown menu below to select a state and view its constituencies by winning coalition.</p>
     <div id="viz-map-state" class="viz viz--mapSm"></div>
   </section>
 
-  <aside class="card" style="grid-area:desc2">…</aside>
-  <aside class="card" style="grid-area:desc3">…</aside>
-  <aside class="card" style="grid-area:desc4">…</aside>
+  <aside class="card" style="grid-area:desc2">
+    <!-- Part 1: East Coast Shift -->
+    <h3>Power Shift in the East Coast</h3>
+    <p>
+      The BN once held firm control over Malaysia’s east coast.  
+      In the GE15, the <strong><span style="color:#1039ad;">PN</span>, led by the Malaysian Islamic Party (PAS), gained strong support across the east coast</strong>, 
+      particularly in Kelantan, Terengganu, and Kedah.  
+      PAS’s deep community networks helped PN end BN’s long-standing dominance in the region.
+    </p>
+
+    <br>
+    <br>
+
+    <!-- Part 2: East Malaysia’s Influence -->
+    <h3>The Rise of East Malaysian Coalitions</h3>
+    <p>
+      In earlier elections, BN dominated East Malaysia through its local branches.  
+      By GE15, regional coalitions such as <strong><span style="color:#ff4719;">GPS</span>, <span style="color:#fe9929;">GRS</span>, and <span style="color:#fed976;">WARISAN</span>
+      became the main political forces</strong>, replacing BN’s control.  
+      Their rise reflected East Malaysia’s stronger political influence and its key role 
+      in forming the unity government led by Anwar Ibrahim.
+    </p>
+  </aside>
 
   <section class="card card--subtitle" style="grid-area:vTitle">
-  <h2 class="card__title">Voter</h2>
-  <p class="subtitle"> ...</p>
+  <h2 class="card__title;" style="text-align:center;">Voter Turnout Trends and Patterns</h2>
+  <p class="subtitle;" style="text-align:center;"> GE15 turnout patterns across area types, with historical trends from GE11–GE15.</p>
   </section>
 
   <section class="card" style="grid-area:facet">
-    <h2 class="card__title">Turnout — Faceted Histogram</h2>
-    <div id="viz-facet" class="viz viz--tall"></div>
+    <h2 class="card__title">  Voter Turnout Patterns in
+      <span style="color:#f5942c;">Rural</span>,
+      <span style="color:#42b0db;">Semi-Urban</span>, and
+      <span style="color:#0e6ae3;">Urban</span> Areas</h2>
+    <p class="subtitle" style="font-size: 0.8em;">Each bar shows the number of constituencies within a given voter turnout range.</p>
+    <div id="viz-facet" class="viz viz--hist"></div>
   </section>
-  <aside class="card" style="grid-area:desc5">…</aside>
+  <aside class="card" style="grid-area:desc3">
+    <p>In the 2022 general election, 68 constituencies were classified as rural, 75 as semi-urban, and 79 as urban.</p>
+    <p>Voter turnout was slightly lower in rural areas, partly due to logistical challenges and greater distances to polling stations, while semi-urban areas showed more consistent participation.</p>
+    <p>Across all area types, most constituencies recorded turnout rates between 75% and 80%, reflecting strong and stable voter engagement nationwide despite regional differences.</p>
+  </aside>
 
   <section class="card" style="grid-area:heat">
-    <h2 class="card__title">Turnout Heatmap (GE11–GE15)</h2>
+    <h2 class="card__title">Voter Turnout Trends Across States (GE11–GE15)</h2>
+    <p class="subtitle-tip">Tip: Use the dropdown menu below to filter states by region.</p>
     <div id="viz-heat" class="viz viz--tall"></div>
   </section>
-  <aside class="card" style="grid-area:desc6">…</aside>
+  <aside class="card" style="grid-area:desc4">…</aside>
 
   <section class="card card--subtitle" style="grid-area:dTitle">
-  <h2 class="card__title">Voter Demographics</h2>
+  <h2 class="card__title"; style="text-align:center;">Voter Demographics</h2>
   <p class="subtitle">A closer look at the age, gender, and ethnic composition of Malaysia’s electorate.</p>
   </section>
 
-  <section class="card" style="grid-area:vAge"><h2 class="card__title">Voters — Age</h2><div id="viz-v-age" class="viz"></div></section>
-  <section class="card" style="grid-area:vGen"><h2 class="card__title">Voters — Gender</h2><div id="viz-v-gen" class="viz"></div></section>
-  <section class="card" style="grid-area:vEth"><h2 class="card__title">Voters — Ethnicity</h2><div id="viz-v-eth" class="viz"></div></section>
+  <section class="card" style="grid-area:vAge"><h2 class="card__title">Voter Age Composition</h2><div id="viz-v-age" class="viz"></div></section>
+  <section class="card" style="grid-area:vGen"><h2 class="card__title">Voter Gender Composition</h2><div id="viz-v-gen" class="viz"></div></section>
+  <section class="card" style="grid-area:vEth"><h2 class="card__title">Voter Ethnic Composition</h2><div id="viz-v-eth" class="viz"></div></section>
 
+  <aside class="card" style="grid-area:desc5">…</aside>
+  <aside class="card" style="grid-area:desc6">…</aside>
   <aside class="card" style="grid-area:desc7">…</aside>
-  <aside class="card" style="grid-area:desc8">…</aside>
-  <aside class="card" style="grid-area:desc9">…</aside>
 
   <section class="card card--subtitle" style="grid-area:cTitle">
   <h2 class="card__title">CndidateDemographics</h2>
   <p class="subtitle">A closer look at the age, gender, and ethnic composition of Malaysia’s electorate.</p>
   </section>
 
-  <section class="card" style="grid-area:cAge"><h2 class="card__title">Candidates — Age</h2><div id="viz-c-age" class="viz"></div></section>
-  <section class="card" style="grid-area:cGen"><h2 class="card__title">Candidates — Gender</h2><div id="viz-c-gen" class="viz"></div></section>
-  <section class="card" style="grid-area:cEth"><h2 class="card__title">Candidates — Ethnicity</h2><div id="viz-c-eth" class="viz"></div></section>
+  <section class="card" style="grid-area:cAge"><h2 class="card__title">Candidate Age Composition</h2><div id="viz-c-age" class="viz"></div></section>
+  <section class="card" style="grid-area:cGen"><h2 class="card__title">Candidate Gender Composition</h2><div id="viz-c-gen" class="viz"></div></section>
+  <section class="card" style="grid-area:cEth"><h2 class="card__title">Candidate Ethnic Composition</h2><div id="viz-c-eth" class="viz"></div></section>
 
+  <aside class="card" style="grid-area:desc8">…</aside>
+  <aside class="card" style="grid-area:desc9">…</aside>
   <aside class="card" style="grid-area:desc10">…</aside>
-  <aside class="card" style="grid-area:desc11">…</aside>
-  <aside class="card" style="grid-area:desc12">…</aside>
 </main>
 
 <script>
@@ -92,7 +140,36 @@
   vegaEmbed('#viz-map-all', 'js/parlimen_all_map.vg.json', opts);
 
   // 3. State zoom map
-  vegaEmbed('#viz-map-state', 'js/parlimen_state_map.vg.json', opts);
+  vegaEmbed('#viz-map-state', 'js/parlimen_state_map.vg.json', opts)
+  .then(({ view, el }) => {
+
+    // Map to nicer English names for the title
+    const nameMap = {
+      'Pulau Pinang': 'Penang',
+      'Melaka': 'Malacca',
+      'W.P. Kuala Lumpur': 'Kuala Lumpur',
+      'W.P. Putrajaya': 'Putrajaya',
+      'W.P. Labuan': 'Labuan'
+    };
+
+    const titleEl = document.getElementById('state-map-title');
+    const setTitle = (val) => {
+      const label = nameMap[val] || val || 'Selected State';
+      titleEl.textContent = `GE15 Results by Winning Coalition in ${label}`;
+    };
+
+    // 1) Set initial title from the signal value
+    setTitle(view.signal('selected_state'));
+
+    // 2) Update title whenever the param changes
+    view.addSignalListener('selected_state', (_name, value) => setTitle(value));
+
+    // 3) (Optional) Move the bindings above the chart
+    const bindings = el.querySelector('.vega-bindings');
+    if (bindings) el.prepend(bindings);
+  })
+  .catch(console.error);
+  
 
   // 4. Facet histogram
   vegaEmbed('#viz-facet', 'js/area_turnout.vg.json', opts);

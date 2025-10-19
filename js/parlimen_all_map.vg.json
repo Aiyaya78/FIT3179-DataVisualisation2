@@ -1,9 +1,7 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "title": {"text": "GE15 Constituency-Level Results by Winning Party", "anchor": "start"},
-  "width": 1000,
-  "height": 500,
-  "autosize": {"type": "fit-x", "resize": true},
+  "width": "container",
+  "height": 250,
   "projection": {"type": "mercator"},
 
   "layer": [
@@ -110,23 +108,18 @@
           "field": "winning_party",
           "type": "nominal",
           "scale": {
-            "domain": ["PH", "PN", "BN", "GPS", "GRS", "WARISAN", "IND/OTH"],
-            "range": ["#ea152c", "#0089fd", "#ff89c2", "#036b7e", "#af30c1", "#ffcb09", "#d2d1d6"]
+            "domain": ["PH","PN","BN","GPS","GRS","WARISAN","IND/OTH"],
+            "range": ["#bd0026","#1039ad","#15ace8","#ff4719","#fe9929","#fed976","#4ad7e8"]
           },
           "title": "Winning Party",
           "legend": {
             "orient": "bottom",
             "direction": "horizontal",
-            "columns": 7,
             "symbolType": "circle",
-            "symbolSize": 300,
-            "symbolStrokeWidth": 1.2,
-            "title": "Winning Party",
-            "titleFontSize": 14,
-            "titleFontWeight": "bold",
-            "titlePadding": 8,
-            "labelFontSize": 12,
-            "columnPadding": 16
+            "symbolSize": 250,
+            "title": null,
+            "labelFontSize": 10,
+            "labelLimit": 0
           }
         },
         "opacity": {
@@ -164,14 +157,14 @@
           {"state": "Malacca", "lon": 99.5, "lat": 2.15},
           {"state": "Sarawak", "lon": 113.5, "lat": 4.4},
           {"state": "Sabah", "lon": 113.5, "lat": 6.2},
-          {"state": "Federal Territory of Labuan", "lon": 113.5, "lat": 5.3},
-          {"state": "Federal Territory of Kuala Lumpur", "lon": 99.5, "lat": 3.2},
-          {"state": "Federal Territory of Putrajaya", "lon": 99.5, "lat": 2.9}
+          {"state": "Labuan", "lon": 113.5, "lat": 5.3},
+          {"state": "Kuala Lumpur", "lon": 99.5, "lat": 3.2},
+          {"state": "Putrajaya", "lon": 99.5, "lat": 2.9}
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 9,
         "fontWeight": "normal",
         "align": "right",
         "baseline": "middle",
@@ -197,7 +190,7 @@
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 9,
         "fontWeight": "normal",
         "align": "left",
         "baseline": "middle",
