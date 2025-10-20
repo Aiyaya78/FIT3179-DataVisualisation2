@@ -238,7 +238,7 @@ body {
 }
 
 /* Mobile layout */
-@media (max-width:800px){
+@media (max-width:700px){
   .page{
     grid-template-columns:1fr;
     grid-template-areas:
@@ -255,20 +255,18 @@ body {
       "desc4"
       "dTitle"
       "vAge"
-      "vGen"
-      "vEth"
       "desc5"
+      "vGen"
       "desc6"
+      "vEth"
       "desc7"
       "cTitle"
       "cAge"
-      "cGen"
-      "cEth"
       "desc8"
+      "cGen"
       "desc9"
+      "cEth"
       "desc10"
       "meta";
   }
-  .viz--map{ height:300px }
-  .viz--mapSm{ height:300px }
 }
