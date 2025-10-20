@@ -137,9 +137,9 @@
           {"field": "state_en", "title": "State"},
           {"field": "election", "title": "Election"},
           {"field": "year", "title": "Year"},
-          {"field": "turnout_percent", "type": "quantitative", "title": "Turnout Rate (%)", "format": ".2f"},
-          {"field": "registered_voters", "type": "quantitative", "title": "Registered Voter", "format": ","},
-          {"field": "voted", "type": "quantitative", "title": "Voted", "format": ","}
+          {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout Rate (%)", "format": ".2f"},
+          {"field": "registered_voters", "type": "quantitative", "title": "Registered Voters", "format": ","},
+          {"field": "voted", "type": "quantitative", "title": "Votes Cast", "format": ","}
         ]
       }
     }

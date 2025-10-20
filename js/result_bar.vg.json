@@ -101,12 +101,12 @@
           }
         },
         "tooltip": [
-          {"field": "seats", "title": "Seats Won"},
-          {"field": "full", "title": "Coalition (Malay)"},
-          {"field": "english", "title": "Coalition (English)"},
-          {"field": "totalSeats", "title": "Total Parliamentary Seats"},
-          {"field": "pctLabel", "title": "Seat Share"}
-        ]
+            {"field": "full", "title": "Coalition"},
+            {"field": "english", "title": "English Name"},
+            {"field": "seats", "title": "Seats Won", "format":{}},
+            {"field": "pctLabel", "title": "Seat Share"},
+            {"field": "totalSeats", "title": "Total Parliamentary Seats"}
+          ]
       }
     },
     {
@@ -153,7 +153,9 @@
       "labelFontWeight": 500,
       "titleFont": "Nunito",
       "titleFontWeight": 600
-    }
+    },
+    "tooltipFormat": {},
+    "facet": {}
   }
     
 

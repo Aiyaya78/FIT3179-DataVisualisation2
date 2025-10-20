@@ -138,9 +138,9 @@
           {"field": "code_parlimen", "title": "Parliament Code"},
           {"field": "constituency", "title": "Constituency"},
           {"field": "state_en", "title": "State"},
-          {"field": "english", "title": "Winner"},
+          {"field": "english", "title": "Winning Coalition"},
           {"field": "winning_majority", "type": "quantitative", "title": "Winning Majority", "format": ","},
-          {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout (%)", "format": ".1f"}
+          {"field": "turnout_percent", "type": "quantitative", "title": "Voter Turnout Rate (%)", "format": ".1f"}
         ]
       }
     },

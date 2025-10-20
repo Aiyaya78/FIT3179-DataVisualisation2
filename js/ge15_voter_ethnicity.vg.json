@@ -58,8 +58,9 @@
         "tooltip": [
           {"field": "ethnicity_en", "title": "Ethnicity"},
           {"field": "count", "type": "quantitative", "title": "Electors Count", "format": ","},
-          {"field": "total", "type": "quantitative", "title": "Total Electors", "format": ","},
-          {"field": "pct", "type": "quantitative", "title": "Percentage of Electors", "format": ".2%"}
+          {"field": "pct", "type": "quantitative", "title": "Percentage of Electors", "format": ".2%"},
+          {"field": "total", "type": "quantitative", "title": "Total Electors", "format": ","}
+          
         ]
       }
     }

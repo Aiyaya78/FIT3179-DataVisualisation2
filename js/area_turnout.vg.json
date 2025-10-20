@@ -57,8 +57,8 @@
       },
       "tooltip": [
         {"field": "urban_rural_classification", "title": "Area Class"},
-        {"field": "binLabel", "title": "Turnout Bin"},
-        {"field": "count", "type": "quantitative", "title": "Constituencies Count"}
+        {"field": "binLabel", "title": "Voter Turnout Rate Range"},
+        {"field": "count", "type": "quantitative", "title": "Number of Constituencies"}
       ]
     }
   },
