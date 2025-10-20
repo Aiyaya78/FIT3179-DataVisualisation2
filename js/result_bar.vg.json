@@ -101,9 +101,9 @@
           }
         },
         "tooltip": [
+          {"field": "seats", "title": "Seats Won"},
           {"field": "full", "title": "Coalition (Malay)"},
           {"field": "english", "title": "Coalition (English)"},
-          {"field": "seats", "title": "Seats Won"},
           {"field": "totalSeats", "title": "Total Parliamentary Seats"},
           {"field": "pctLabel", "title": "Seat Share"}
         ]
@@ -123,7 +123,8 @@
       }
       },
       {
-        "mark": {"type": "text", "align": "center", "fontWeight": "bold", "fontSize": 12, "dy": -10},
+        "mark": {"type": "text", "align": "center", "fontSize": 12, "dy": -10,"font": "Nunito",
+      "fontWeight": 600},
         "encoding": {
           "x": {"datum": 112},
           "y": {"value": 0},
@@ -141,8 +142,20 @@
       "titlePadding": 8,
       "domain": false,
       "tickSize": 3,
-      "gridColor": "#e5e7eb"
+      "gridColor": "#e5e7eb",
+      "labelFont": "Nunito",
+      "labelFontWeight": 300,
+      "titleFont": "Nunito",
+      "titleFontWeight": 600
+    },
+    "legend": {
+      "labelFont": "Nunito",
+      "labelFontWeight": 500,
+      "titleFont": "Nunito",
+      "titleFontWeight": 600
     }
-
   }
+    
+
 }
+

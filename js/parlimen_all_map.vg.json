@@ -165,7 +165,8 @@
       "mark": {
         "type": "text",
         "fontSize": 9,
-        "fontWeight": "normal",
+        "font": "Nunito",
+        "fontWeight": 600,
         "align": "right",
         "baseline": "middle",
         "fill": "black"
@@ -231,5 +232,11 @@
         "latitude2": {"field": "lat2"}
     }
     }
-  ]
+  ],
+  "config": {
+    "legend": {
+      "labelFont": "Nunito",
+      "labelFontWeight": 500
+    }
+  }
 }

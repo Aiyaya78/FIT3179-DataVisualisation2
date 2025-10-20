@@ -25,7 +25,7 @@
   }
   },
   "spec": {
-    "width": 170,
+    "width": 175,
     "height": 200,
     "mark": {"type": "bar"},
     "encoding": {
@@ -66,6 +66,17 @@
   "config": {
     "view": {"stroke": null},
     "facet": {"spacing": 10},
-    "axis": {"grid": true}
+    "axis": {
+      "grid": true, 
+      "titleFontSize": 12,
+      "labelFontSize": 11,
+      "titlePadding": 8,
+      "domain": false,
+      "tickSize": 3,
+      "gridColor": "#e5e7eb",
+      "labelFont": "Nunito",
+      "labelFontWeight": 300,
+      "titleFont": "Nunito",
+      "titleFontWeight": 600}
   }
 }

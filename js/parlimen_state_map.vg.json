@@ -153,5 +153,13 @@
       "transform": [{"filter": "datum.properties.state === selected_state"}],
       "mark": {"type": "geoshape", "fill": null, "stroke": "#000", "strokeWidth": 3}
     }
-  ]
+  ],
+  "config": {
+    "legend": {
+      "labelFont": "Nunito",
+      "labelFontWeight": 500,
+      "titleFont": "Nunito",
+      "titleFontWeight": 600
+    }
+  }
 }

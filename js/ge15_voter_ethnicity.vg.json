@@ -47,11 +47,11 @@
           "field": "count",
           "type": "quantitative",
           "title": "Voters",
-          "axis": {"grid": false, "format": "s"}
+          "axis": {"grid": true, "format": "s"}
         },
 
         "color": {
-          "condition": {"test": "datum.flag !== ''", "value": "#A6166C"},
+          "condition": {"test": "datum.flag !== ''", "value": "#e7298a"},
           "value": "#bdbdbd"
         },
 
@@ -65,5 +65,19 @@
     }
   ],
 
-  "config": {"view": {"stroke": null}}
+  "config": {
+    "view": {"stroke": null},
+    "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "titlePadding": 8,
+        "domain": false,
+        "tickSize": 3,
+        "gridColor": "#e5e7eb",
+        "labelFont": "Nunito",
+        "labelFontWeight": 300,
+        "titleFont": "Nunito",
+        "titleFontWeight": 600
+        }
+  }
 }

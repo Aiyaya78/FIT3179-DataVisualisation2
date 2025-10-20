@@ -7,6 +7,38 @@
   --muted: #595a5c;
 }
 
+.card--subtitle h2 {
+  font-family: "Coustard", serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 25px;
+  letter-spacing: 0.3px;
+  text-align: center;
+  color: #111;
+}
+.card--title h1 {
+  font-family: "Coustard", serif;
+  font-weight: 900;
+  font-style: normal;
+  font-size: 34px;
+  letter-spacing: 0.3px;
+  color: #111;
+  text-align: center;
+}
+.card__title,
+.card h3 {
+  font-family: "Coustard", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 16px;
+  color: #222;
+}
+.coustard-black {
+  font-family: "Coustard", serif;
+  font-weight: 900;
+  font-style: normal;
+}
+
 h1, h2, h3 {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 700;
@@ -21,7 +53,11 @@ p {
   text-align: justify;
   margin-top: 0;
   margin-bottom: 10px;
-  color: #424242;
+  color: #575355;
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .card h3 {
@@ -80,6 +116,7 @@ body {
 .card--title{ 
   text-align:center; 
   padding:22px 18px ;
+  margin-bottom: 25px;
   border-bottom:2px solid #3b3b3b;
 }
 .card__title{ margin:0 0 8px; font-size:18px }
@@ -94,9 +131,50 @@ body {
 .card--subtitle {
   border-top: 1px solid #3b3b3b;   
   padding-top: 14px;               
-  margin-top: 20px;                
+  margin-top: 25px;                
 }
 
+#viz-heat {
+  position: relative;
+  padding-top: 30px;  /* gives room for dropdown */
+}
+
+#viz-map-state {
+  position: relative;
+  padding-top: 30px;  /* gives room for dropdown */
+}
+
+.vega-bindings {
+  position: absolute;
+  top: 0;                 /* stick to the top */
+  left: 0;                /* flush with the left edge */
+  margin: 0;              /* remove outer spacing */
+  padding: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.2;
+  z-index: 10;            /* keeps above chart if needed */
+}
+
+/* Label text (e.g., “State:” or “Region:”) */
+.vega-bindings label {
+  font-weight: 500;
+  margin-right: 4px;
+  color: #111;
+}
+
+/* The dropdown <select> itself */
+.vega-bindings select {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  outline: none;
+}
 
 /* Area hooks */
 [style*="grid-area:title"]{grid-area:title}

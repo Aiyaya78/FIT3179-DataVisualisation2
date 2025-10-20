@@ -39,11 +39,12 @@
         "type": "text",
         "radius": 73,
         "lineBreak": "\n",
-        "fontWeight": "bold",
+        "fontWeight": 500,
         "fontSize": 10,
         "align": "center",
         "baseline": "middle",
-        "fill": "white"
+        "fill": "white",
+        "font": "Nunito"
       },
       "encoding": {
         "theta": {"field": "candidates", "type": "quantitative", "stack": true},
@@ -60,8 +61,9 @@
         "align": "center",
         "baseline": "middle",
         "lineBreak": "\n",
-        "fontWeight": "bold",
-        "fontSize": 12
+        "fontWeight": 700,
+        "fontSize": 12,
+        "font": "Nunito"
       },
       "encoding": {
         "theta": {"value": 0},

@@ -44,10 +44,10 @@
         "y": {
           "field": "count", "type": "quantitative",
           "title": "Candidates",
-          "axis": {"grid": false}
+          "axis": {"grid": true}
         },
         "color": {
-          "condition": {"test": "datum.flag !== ''", "value": "#CF1717"},
+          "condition": {"test": "datum.flag !== ''", "value": "#88419d"},
           "value": "#bdbdbd"
         },
         "tooltip": [
@@ -60,5 +60,18 @@
     }
   ],
 
-  "config": {"view": {"stroke": null}}
+  "config": {"view": {"stroke": null},
+    "axis": {
+        "titleFontSize": 12,
+        "labelFontSize": 11,
+        "titlePadding": 8,
+        "domain": false,
+        "tickSize": 3,
+        "gridColor": "#e5e7eb",
+        "labelFont": "Nunito",
+        "labelFontWeight": 300,
+        "titleFont": "Nunito",
+        "titleFontWeight": 600
+        }
+}
 }
