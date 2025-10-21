@@ -161,6 +161,7 @@
       "titleFontWeight": 600
     },
     "legend": {
+      "titleAnchor": "middle",
       "labelFont": "Nunito",
       "labelFontWeight": 500,
       "titleFont": "Nunito",
