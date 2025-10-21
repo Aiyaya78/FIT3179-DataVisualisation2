@@ -121,7 +121,7 @@
         "y": {
           "field": "state_short", "type": "nominal",
           "title": "State",
-          "sort": {"field":"turnout_percent", "op":"mean", "order":"descending"},
+          "sort": {"field":"turnout_percent", "order":"descending"},
           "scale": {"paddingInner": 0, "paddingOuter": 0}
           
         },
