@@ -24,11 +24,7 @@
     },
     {"joinaggregate": [
       {"op": "max", "field": "pct", "as": "max_pct"}
-    ]},
-    {
-      "calculate": "datum.pct === datum.max_pct || datum.pct === datum.min_pct ? 'Extreme' : ''",
-      "as": "flag"
-    }
+    ]}
   ],
 
   "layer": [
@@ -46,7 +42,7 @@
           "axis": {"grid": true, "format": "s"}
         },
         "color": {
-          "condition": {"test": "datum.flag !== ''", "value": "#88419d"},
+          "condition": {"test": "datum.pct === datum.max_pct", "value": "#88419d"},
           "value": "#bdbdbd"
         },
         "tooltip": [

@@ -23,13 +23,8 @@
       "as": "age_label"
     },
     {"joinaggregate": [
-      {"op": "max", "field": "pct", "as": "max_pct"},
-      {"op": "min", "field": "pct", "as": "min_pct"}
-    ]},
-    {
-      "calculate": "datum.pct === datum.max_pct || datum.pct === datum.min_pct ? 'Extreme' : ''",
-      "as": "flag"
-    }
+      {"op": "max", "field": "pct", "as": "max_pct"}
+    ]}
   ],
 
   "layer": [
@@ -47,7 +42,7 @@
           "axis": {"grid": true}
         },
         "color": {
-          "condition": {"test": "datum.flag !== ''", "value": "#88419d"},
+          "condition": {"test": "datum.pct === datum.max_pct", "value": "#88419d"},
           "value": "#bdbdbd"
         },
         "tooltip": [
